@@ -39,7 +39,7 @@ public class CheerPattern extends CommandExampleBase {
     private static String PATTERN25 = "RIPCheer";
     private static String PATTERN26 = "Shamrock";
 
-    public int CheerCount = 645;
+    public int CheerCount = 0;
     public double CheerValue = 0.00;
 
     private final Twirk twirk;
