@@ -1,5 +1,9 @@
 Angel Steps PK Bot
-
+1. Pull repo into your IDE.
+2. Check CheersPattern.java file if CheerCount is 0.
+3. Run Bot
+4. In terminal type in "angel_steps"
+5. Done. Shut down bot after stream
 
 
 
