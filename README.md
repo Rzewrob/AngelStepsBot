@@ -5,7 +5,7 @@ Angel Steps PK Bot
 4. In terminal type in "angel_steps"
 5. Done. Shut down bot after stream
 
-
+If you need to edit Count since late to some bits. Edit CheerCount value with bits value. Then restart bot. Follow steps above
 
 Below this line is orginal Readme
 ##################################################################################################################################################################
