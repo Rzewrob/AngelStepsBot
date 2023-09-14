@@ -98,6 +98,10 @@ public final class Twirk {
 	private final UsernoticeBuilder		usernoticeBuilder;
 	private final SocketFactory 		socketFactory;
 	private final int 					pingIntervalSeconds;
+	private int CheerCount= 0;
+	private double Cheervalue = 0;
+	private int Subcount= 0;
+	private double SubValue= 0;
 	//***********************************************************************************************
 	//											CONSTRUCTOR
 	//***********************************************************************************************
@@ -614,5 +618,37 @@ public final class Twirk {
 		 * :twitch_username!twitch_username@twitch_username.tmi.twitch.tv JOIN #channel
 		 */
 		return prefix.substring( prefix.charAt(0) == ':' ? 1 : 0, prefix.indexOf('!'));
+	}
+
+	public int getCheerCount() {
+		return CheerCount;
+	}
+
+	public void setCheerCount(int cheerCount) {
+		CheerCount = cheerCount;
+	}
+
+	public double getCheervalue() {
+		return Cheervalue;
+	}
+
+	public void setCheervalue(double cheervalue) {
+		Cheervalue = cheervalue;
+	}
+
+	public int getSubcount() {
+		return Subcount;
+	}
+
+	public void setSubcount(int subcount) {
+		Subcount = subcount;
+	}
+
+	public double getSubValue() {
+		return SubValue;
+	}
+
+	public void setSubValue(double subValue) {
+		SubValue = subValue;
 	}
 }

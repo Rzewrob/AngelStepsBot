@@ -1,7 +1,9 @@
 package com.gikk.twirk;
 
-import com.gikk.twirk.commands.PatternCommandExample;
+import com.gikk.twirk.commands.CheerPattern;
+import com.gikk.twirk.commands.PatternTest;
 import com.gikk.twirk.commands.PrefixCommandExample;
+import com.gikk.twirk.commands.SubPattern;
 import com.gikk.twirk.events.TwirkListener;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -18,7 +20,9 @@ import java.util.Scanner;
  *
  */
 public class BotExample {
-	
+	public int MoneyValue = 0;
+	public int Bitcount =0;
+	public int Subcount =0;
 	public static void main(String[] args) throws IOException, InterruptedException{		
 		System.out.println("Welcome to this Bot example. In this example you will be able \n"
 				         + "to send and receive messages from a Twitch chat channel. You will \n"
@@ -32,10 +36,11 @@ public class BotExample {
 								.build();
 		
 		twirk.addIrcListener( getOnDisconnectListener(twirk) );
-		twirk.addIrcListener( new PatternCommandExample(twirk) );
+		//twirk.addIrcListener( new PatternCommandExample(twirk) );
 		twirk.addIrcListener( new PrefixCommandExample(twirk) );
-
-		System.out.println("To send a message to the channel, type it in the console and press Enter");
+		twirk.addIrcListener(new PatternTest(twirk));
+		twirk.addIrcListener(new CheerPattern(twirk) );
+		twirk.addIrcListener(new SubPattern(twirk) );
 		System.out.println("To reconnect to Twitch, type .reconnect and press Enter");
 		System.out.println("To exit this example, type .quit and press Enter");
 
@@ -56,7 +61,9 @@ public class BotExample {
 				//however, which will cause us to reconnect to Twitch.
 				twirk.disconnect();
 			}
-			else {
+			else
+			{
+				//Any message typed in bot will be posted in twitch chat...
 				twirk.channelMessage(line);
 			}
 		}
@@ -82,5 +89,10 @@ public class BotExample {
 				catch (InterruptedException ignored) {  }
 			}
 		};
+	}
+	public String Messagepasser(String line)
+	{
+
+		return "";
 	}
 }

@@ -4,12 +4,14 @@ import com.gikk.twirk.Twirk;
 import com.gikk.twirk.enums.USER_TYPE;
 import com.gikk.twirk.types.twitchMessage.TwitchMessage;
 import com.gikk.twirk.types.users.TwitchUser;
-import java.util.Calendar;
-import java.util.Date;
+
+import java.util.*;
 
 public class PrefixCommandExample extends CommandExampleBase {
-	private final static String patternA = "!timezone";
-	private final static String patternB = "!time";
+	private final static String patternA = "!subcount";
+	private final static String patternB = "!bitcount";
+	private final static String patternC = "!zerobitcount";
+	private final static String patternD = "!SetBits";
 	
 	private final Twirk twirk;
 	
@@ -19,21 +21,35 @@ public class PrefixCommandExample extends CommandExampleBase {
 	}
 
 	@Override
-	protected String getCommandWords() {
-		return patternA + "|" + patternB;
+	protected String getCommandWords()  {
+		return patternA + "|" + patternB + "|" + patternC;
 	}
 
 	@Override
 	protected USER_TYPE getMinUserPrevilidge() {
-		return USER_TYPE.DEFAULT;
+		return USER_TYPE.MOD;
 	}
 
 	@Override
 	protected void performCommand(String command, TwitchUser sender, TwitchMessage message) {
-		if( command.equals(patternA) )
-			twirk.channelMessage(sender.getDisplayName() +": Local time zone is " + Calendar.getInstance().getTimeZone().getDisplayName());
-		else if( command.equals(patternB) )
-			twirk.channelMessage(sender.getDisplayName()+": Local time is " + new Date().toString() );
+		if( command.equals(patternA) ) {
+			twirk.channelMessage("Current Subs: " + twirk.getSubcount() + " for a value of " + String.format("%.2f",twirk.getSubValue()));
+//			System.out.println("testA");
+		}
+		else if( command.equals(patternB) ) {
+			twirk.channelMessage("Current Bits: " + twirk.getCheerCount() + " for a value of " + String.format("%.2f",twirk.getCheervalue()));
+//			System.out.println("testB");
+		}
+		else if (command.equals(patternC)){
+			twirk.setCheerCount(0);
+			twirk.setCheervalue(0);
+			twirk.channelMessage("Current Bits: " + twirk.getCheerCount() + " for a value of " + String.format("%.2f",twirk.getCheervalue()));
+		}
+		else if (command.equals(patternD)){
+			String test = message.getContent();
+			System.out.println();
+			twirk.setCheervalue(0 + 1);
+		}
 			
 	}	
 	
