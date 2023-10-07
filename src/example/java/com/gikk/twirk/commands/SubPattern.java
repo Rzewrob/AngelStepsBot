@@ -2,23 +2,26 @@ package com.gikk.twirk.commands;
 
 import com.gikk.twirk.Twirk;
 import com.gikk.twirk.enums.USER_TYPE;
+import com.gikk.twirk.types.notice.Notice;
 import com.gikk.twirk.types.twitchMessage.TwitchMessage;
+import com.gikk.twirk.types.usernotice.Usernotice;
 import com.gikk.twirk.types.users.TwitchUser;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class SubPattern extends CommandExampleBase {
+public class SubPattern extends SubAny {
 
-    private static String PATTERNA = "USERNOTICE";
-    private static String PATTERNB = "";
+    private static String PATTERNA = "subgift";
+    private static String PATTERNB = "resub";
+    private static String PATTERNC = "submysterygift";
     public int SubCount = 0;
     public double SubValue = 0.00;
 
     private final Twirk twirk;
 
     public SubPattern(Twirk twirk) {
-        super(CommandType.CONTENT_COMMAND);
+        super(CommandType.TAG_COMMAND);
         this.twirk = twirk;
     }
 
@@ -33,20 +36,13 @@ public class SubPattern extends CommandExampleBase {
     }
 
     @Override
-    protected void performCommand(String command, TwitchUser sender, TwitchMessage message) {
-        System.out.println("Recongized a Sub" + message.toString());
-        if(command.equals(PATTERNA)) {
-            System.out.println("Sub Recongized with PatternA ");
-        }
-        else if(command.equals(PATTERNB))
-        {
-            System.out.println("Sub Recongized with PatternB ");
-        }
+    protected void performCommand(TwitchUser sender, Usernotice usernotice) {
+        System.out.println("Recongized a Sub from " + sender.getUserName().toString() + " for " + usernotice.getRaw());
         int ChValue = 0;
         int tiervalue =0;
-        String TMessage = message.getTag();
+        String TMessage = usernotice.getRaw();
         System.out.println("Tag = " + TMessage);
-        Pattern p = Pattern.compile("msg-param-sub-plan="+"(\\d*)");
+        Pattern p = Pattern.compile("msg-param-sub-plan=(\\d*);");
         Pattern Tier = Pattern.compile("sTier\\"+"(s\\d*\\)");
         Matcher m = p.matcher(TMessage);
         Matcher m2 = Tier.matcher(TMessage);
@@ -59,15 +55,15 @@ public class SubPattern extends CommandExampleBase {
             else {
                 ChValue = Integer.parseInt(m.group(1));
             }
-            tiervalue = Integer.parseInt(m2.group(1));
+            //tiervalue = Integer.parseInt(m2.group(1));
             ChValue /= 1000;
         }
-        if(tiervalue == 3)
-        {
-            tiervalue *= 5;
-        }
+//        if(tiervalue == 3)
+//        {
+//            tiervalue *= 5;
+//        }
         SubCount += ChValue;
-        SubValue += (5 * tiervalue);
+        SubValue += (5 * ChValue);
 
         // twirk.channelMessage("Count: " + count);
         System.out.println("Sub Count: " + SubCount);

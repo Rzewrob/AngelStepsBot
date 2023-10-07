@@ -1,9 +1,6 @@
 package com.gikk.twirk;
 
-import com.gikk.twirk.commands.CheerPattern;
-import com.gikk.twirk.commands.PatternTest;
-import com.gikk.twirk.commands.PrefixCommandExample;
-import com.gikk.twirk.commands.SubPattern;
+import com.gikk.twirk.commands.*;
 import com.gikk.twirk.events.TwirkListener;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -41,6 +38,7 @@ public class BotExample {
 		twirk.addIrcListener(new PatternTest(twirk));
 		twirk.addIrcListener(new CheerPattern(twirk) );
 		twirk.addIrcListener(new SubPattern(twirk) );
+
 		System.out.println("To reconnect to Twitch, type .reconnect and press Enter");
 		System.out.println("To exit this example, type .quit and press Enter");
 

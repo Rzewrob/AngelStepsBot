@@ -48,7 +48,9 @@ public class PrefixCommandExample extends CommandExampleBase {
 		else if (command.equals(patternD)){
 			String test = message.getContent();
 			System.out.println();
-			twirk.setCheervalue(0 + 1);
+			twirk.setCheervalue(1);
+			String value = String.valueOf(twirk.getCheervalue());
+			twirk.channelMessage(value);
 		}
 			
 	}	
