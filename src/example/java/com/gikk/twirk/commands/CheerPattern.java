@@ -1,5 +1,6 @@
 package com.gikk.twirk.commands;
 
+import com.crazy.FileWriter;
 import com.gikk.twirk.Twirk;
 import com.gikk.twirk.enums.USER_TYPE;
 import com.gikk.twirk.types.twitchMessage.TwitchMessage;
@@ -44,9 +45,12 @@ public class CheerPattern extends CommandExampleBase {
 
     private final Twirk twirk;
 
-    public  CheerPattern(Twirk twirk) {
+    private final FileWriter fileWriter;
+
+    public  CheerPattern(Twirk twirk, FileWriter fileWriter) {
         super(CommandType.CONTENT_COMMAND);
         this.twirk = twirk;
+        this.fileWriter = fileWriter;
     }
 
     @Override
@@ -73,6 +77,7 @@ public class CheerPattern extends CommandExampleBase {
             ChValue  =  Integer.parseInt(m.group(1));
         }
         CheerCount += ChValue;
+        fileWriter.writeLineToFile("New Bits: " + ChValue );
         CheerValue += CheerCount;
         CheerValue = CheerValue/100;
 

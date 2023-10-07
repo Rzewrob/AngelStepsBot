@@ -135,3 +135,5 @@ $RECYCLE.BIN/
 
 # IntelliJ Idea
 /twirc.iml
+
+dumpTest.txt

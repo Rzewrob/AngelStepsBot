@@ -1,5 +1,6 @@
 package com.gikk.twirk;
 
+import com.crazy.FileWriter;
 import com.gikk.twirk.commands.*;
 import com.gikk.twirk.events.TwirkListener;
 import java.io.IOException;
@@ -31,12 +32,15 @@ public class BotExample {
 		final Twirk twirk = new TwirkBuilder(channel, SETTINGS.MY_NICK, SETTINGS.MY_PASS)
 								.setVerboseMode(true)
 								.build();
+
+		final FileWriter fileWriter = new FileWriter();
+		fileWriter.createFile();
 		
 		twirk.addIrcListener( getOnDisconnectListener(twirk) );
 		//twirk.addIrcListener( new PatternCommandExample(twirk) );
 		twirk.addIrcListener( new PrefixCommandExample(twirk) );
 		twirk.addIrcListener(new PatternTest(twirk));
-		twirk.addIrcListener(new CheerPattern(twirk) );
+		twirk.addIrcListener(new CheerPattern(twirk, fileWriter) );
 		twirk.addIrcListener(new SubPattern(twirk) );
 
 		System.out.println("To reconnect to Twitch, type .reconnect and press Enter");
