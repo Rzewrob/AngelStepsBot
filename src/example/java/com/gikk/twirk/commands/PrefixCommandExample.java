@@ -10,8 +10,8 @@ import java.util.*;
 public class PrefixCommandExample extends CommandExampleBase {
 	private final static String patternA = "!subcount";
 	private final static String patternB = "!bitcount";
-	private final static String patternC = "!zerobitcount";
-	private final static String patternD = "!SetBits";
+//	private final static String patternC = "!zerobitcount";
+//	private final static String patternD = "!SetBits";
 	
 	private final Twirk twirk;
 	
@@ -22,7 +22,7 @@ public class PrefixCommandExample extends CommandExampleBase {
 
 	@Override
 	protected String getCommandWords()  {
-		return patternA + "|" + patternB + "|" + patternC;
+		return patternA + "|" + patternB;
 	}
 
 	@Override
@@ -34,24 +34,25 @@ public class PrefixCommandExample extends CommandExampleBase {
 	protected void performCommand(String command, TwitchUser sender, TwitchMessage message) {
 		if( command.equals(patternA) ) {
 			twirk.channelMessage("Current Subs: " + twirk.getSubcount() + " for a value of " + String.format("%.2f",twirk.getSubValue()));
+			twirk.channelMessage("Tier1Subs: " + twirk.getTier1() + " | Tier2Subs: " + twirk.getTier2() + " | Tier3Subs: " + twirk.getTier3());
 //			System.out.println("testA");
 		}
 		else if( command.equals(patternB) ) {
 			twirk.channelMessage("Current Bits: " + twirk.getCheerCount() + " for a value of " + String.format("%.2f",twirk.getCheervalue()));
 //			System.out.println("testB");
 		}
-		else if (command.equals(patternC)){
-			twirk.setCheerCount(0);
-			twirk.setCheervalue(0);
-			twirk.channelMessage("Current Bits: " + twirk.getCheerCount() + " for a value of " + String.format("%.2f",twirk.getCheervalue()));
-		}
-		else if (command.equals(patternD)){
-			String test = message.getContent();
-			System.out.println();
-			twirk.setCheervalue(1);
-			String value = String.valueOf(twirk.getCheervalue());
-			twirk.channelMessage(value);
-		}
+//		else if (command.equals(patternC)){
+//			twirk.setCheerCount(0);
+//			twirk.setCheervalue(0);
+//			twirk.channelMessage("Current Bits: " + twirk.getCheerCount() + " for a value of " + String.format("%.2f",twirk.getCheervalue()));
+//		}
+//		else if (command.equals(patternD)){
+//			String test = message.getContent();
+//			System.out.println();
+//			twirk.setCheervalue(1);
+//			String value = String.valueOf(twirk.getCheervalue());
+//			twirk.channelMessage(value);
+//		}
 			
 	}	
 	

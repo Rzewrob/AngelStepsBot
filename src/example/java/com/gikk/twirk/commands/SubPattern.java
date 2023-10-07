@@ -17,6 +17,9 @@ public class SubPattern extends SubAny {
     private static String PATTERNC = "submysterygift";
     public int SubCount = 0;
     public double SubValue = 0.00;
+    public int Tier1 = 0;
+    public int Tier2 = 0;
+    public int Tier3 = 0;
 
     private final Twirk twirk;
 
@@ -37,7 +40,7 @@ public class SubPattern extends SubAny {
 
     @Override
     protected void performCommand(TwitchUser sender, Usernotice usernotice) {
-        System.out.println("Recongized a Sub from " + sender.getUserName().toString() + " for " + usernotice.getRaw());
+        System.out.println("Recongized a Sub from " + sender.getUserName() + " for " + usernotice.getRaw());
         int ChValue = 0;
         int tiervalue =0;
         String TMessage = usernotice.getRaw();
@@ -64,6 +67,29 @@ public class SubPattern extends SubAny {
 //        }
         SubCount += ChValue;
         SubValue += (5 * ChValue);
+
+        if(ChValue == 1)
+        {
+            Tier1 += ChValue;
+            System.out.println("Tier 1 Count: " + Tier1);
+            twirk.setTier1(Tier1);
+        }
+        else if (ChValue == 2)
+        {
+            Tier2 += ChValue;
+            System.out.println("Tier 2 Count: " + Tier2);
+            twirk.setTier2(Tier2);
+        }
+        else if ( ChValue == 3)
+        {
+            Tier3 += ChValue;
+            System.out.println("Tier 3 Count: " + Tier3);
+            twirk.setTier3(Tier3);
+        }
+        else
+        {
+            System.out.println("Hmm not recongized tier size debug this?");
+        }
 
         // twirk.channelMessage("Count: " + count);
         System.out.println("Sub Count: " + SubCount);
