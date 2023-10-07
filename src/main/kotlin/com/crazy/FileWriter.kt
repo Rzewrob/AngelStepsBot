@@ -13,7 +13,7 @@ class FileWriter { // TODO: This is just jammed in here for testing purposes.
             File(filename).writeText("File $filename Started at ${LocalDateTime.now()}")
             println("Created File $filename")
         } catch (e: Exception) {
-            println("Failed to create file due to: $e")
+            println("***** ERROR: Failed to create file due to: $e")
         }
     }
 
@@ -21,7 +21,7 @@ class FileWriter { // TODO: This is just jammed in here for testing purposes.
         try {
             File(filename).appendText("\n$textToWrite")
         } catch (e: Exception) {
-            println("Failed to write to file due to: $e")
+            println("***** ERROR: Failed to write to file due to: $e")
         }
     }
 }
