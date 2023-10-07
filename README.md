@@ -7,6 +7,17 @@ Angel Steps PK Bot
 
 If you need to edit Count since late to some bits. Edit CheerCount value with bits value. Then restart bot. Follow steps above
 
+## Setting Password a Nickname
+
+### In Intellij 
+2. Select your run configuration and edit it
+3. Under the environment variables section
+4. set your nick (username) and password - ex: password=[PASSWORD];nick=[USERNAME]
+
+### Jar File
+1. Pass in your username with --nick=[USERNAME] and password --password=[PASSWORD]
+
+
 Below this line is orginal Readme
 ##################################################################################################################################################################
 # Java-Twirk
