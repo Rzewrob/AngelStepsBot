@@ -5,7 +5,7 @@ import java.time.LocalDateTime
 
 class FileWriter { // TODO: This is just jammed in here for testing purposes.
 
-    private val filename = "dumpTest.txt"
+    private val filename = "dumpTest${LocalDateTime.now()}.txt"
 
     fun createFile() {
         println("Creating File $filename")
