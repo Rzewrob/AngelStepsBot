@@ -70,10 +70,10 @@ public class SubPattern extends SubAny {
 //            tiervalue *= 5;
 //        }
 
+        fileWriter.writeLineToFile("New Sub: " + ChValue );
         if(ChValue == 1)
         {
             SubCount = ChValue;
-            fileWriter.writeLineToFile("New Sub: " + ChValue );
             SubValue = (5 * ChValue);
             Tier1++;
             System.out.println("Tier 1 Count: " + Tier1);
