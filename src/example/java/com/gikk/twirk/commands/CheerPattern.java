@@ -1,10 +1,12 @@
 package com.gikk.twirk.commands;
 
+import com.crazy.CheerParser;
 import com.crazy.FileWriter;
 import com.gikk.twirk.Twirk;
 import com.gikk.twirk.enums.USER_TYPE;
 import com.gikk.twirk.types.twitchMessage.TwitchMessage;
 import com.gikk.twirk.types.users.TwitchUser;
+import kotlin.Pair;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -46,11 +48,13 @@ public class CheerPattern extends CommandExampleBase {
     private final Twirk twirk;
 
     private final FileWriter fileWriter;
+    private final CheerParser cheerParser;
 
-    public  CheerPattern(Twirk twirk, FileWriter fileWriter) {
+    public  CheerPattern(Twirk twirk, FileWriter fileWriter, CheerParser cheerParser) {
         super(CommandType.CONTENT_COMMAND);
         this.twirk = twirk;
         this.fileWriter = fileWriter;
+        this.cheerParser = cheerParser;
     }
 
     @Override
@@ -77,7 +81,9 @@ public class CheerPattern extends CommandExampleBase {
             ChValue  =  Integer.parseInt(m.group(1));
         }
         CheerCount += ChValue;
-        fileWriter.writeLineToFile("New Bits: " + ChValue );
+        Pair<String, String> results = cheerParser.getStuff(message.toString());
+//        fileWriter.writeLineToFile("New Bits: " + ChValue, null);
+        fileWriter.writeToFileFancier("Bits", results.getFirst(), results.getSecond());
         CheerValue += CheerCount;
         CheerValue = CheerValue/100;
 

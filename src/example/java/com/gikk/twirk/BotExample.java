@@ -1,6 +1,8 @@
 package com.gikk.twirk;
 
+import com.crazy.CheerParser;
 import com.crazy.FileWriter;
+import com.crazy.SubParser;
 import com.gikk.twirk.commands.*;
 import com.gikk.twirk.events.TwirkListener;
 import java.io.IOException;
@@ -34,14 +36,16 @@ public class BotExample {
 								.build();
 
 		final FileWriter fileWriter = new FileWriter();
-		fileWriter.createFile();
+		fileWriter.initFiles(null);
+		final CheerParser cheerParser = new CheerParser();
+		final SubParser subParser = new SubParser();
 		
 		twirk.addIrcListener( getOnDisconnectListener(twirk) );
 		//twirk.addIrcListener( new PatternCommandExample(twirk) );
 		twirk.addIrcListener( new PrefixCommandExample(twirk) );
 		twirk.addIrcListener(new PatternTest(twirk));
-		twirk.addIrcListener(new CheerPattern(twirk, fileWriter) );
-		twirk.addIrcListener(new SubPattern(twirk, fileWriter) );
+		twirk.addIrcListener(new CheerPattern(twirk, fileWriter, cheerParser) );
+		twirk.addIrcListener(new SubPattern(twirk, fileWriter, subParser) );
 
 		System.out.println("To reconnect to Twitch, type .reconnect and press Enter");
 		System.out.println("To exit this example, type .quit and press Enter");

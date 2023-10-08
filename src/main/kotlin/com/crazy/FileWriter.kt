@@ -3,25 +3,54 @@ package com.crazy
 import java.io.File
 import java.time.LocalDateTime
 
-class FileWriter { // TODO: This is just jammed in here for testing purposes.
+class FileWriter { // This is just intended to play around, so don't mind the mess
 
-    private val filename = "dumpTest${LocalDateTime.now()}.txt"
+    private val now = LocalDateTime.now().toString().replace(":", "")
+    private val defaultFileName = "dumpTest$now"
+    private var filename = defaultFileName
+    private var csvFilename = defaultFileName
 
-    fun createFile() {
-        println("Creating File $filename")
+    fun initFiles(filenameOverride: String? = null) {
+        val file = filenameOverride ?: defaultFileName
+        filename = "$file.txt"
+        csvFilename = "$file.csv"
+
+        createFile(filename)
+        createFile(csvFilename)
+    }
+    
+    fun createFile(filenameToCreate: String) {
         try {
-            File(filename).writeText("File $filename Started at ${LocalDateTime.now()}")
-            println("Created File $filename")
+            println("Creating File $filename")
+            if (!File(filename).exists()) {
+                File(filenameToCreate).writeText("File $filenameToCreate Started at $now")
+                println("Created File $filenameToCreate")
+            } else {
+                println("File $filenameToCreate already exists")
+            }
         } catch (e: Exception) {
             println("***** ERROR: Failed to create file due to: $e")
         }
     }
 
-    fun writeLineToFile(textToWrite: String) {
+    fun writeLineToFile(textToWrite: String, fileToWrite: String? = null) {
         try {
-            File(filename).appendText("\n$textToWrite")
+            val file = fileToWrite ?: filename
+            File(file).appendText("\n$textToWrite")
         } catch (e: Exception) {
             println("***** ERROR: Failed to write to file due to: $e")
         }
+    }
+
+    fun writeToFileFancier(type: String, username: String?, value: String?) {
+        if (value != null && value.toInt() > 0) {
+            writeLineToFile("$username - New $type: $value")
+            writeCsvFile(type, username, value)
+        }
+    }
+
+    fun writeCsvFile(type: String, username: String?, value: String?) {
+        val message = "$type,$username,$value"
+        writeLineToFile(message, csvFilename)
     }
 }
