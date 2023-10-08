@@ -42,15 +42,15 @@ class FileWriter { // This is just intended to play around, so don't mind the me
         }
     }
 
-    fun writeToFileFancier(type: String, username: String?, value: String?) {
+    fun writeToFileFancier(type: String, username: String?, value: String?, privateMessage: String?) {
         if (value != null && value.toInt() > 0) {
-            writeLineToFile("$username - New $type: $value")
-            writeCsvFile(type, username, value)
+            writeLineToFile("$username - New $type: $value - $privateMessage")
+            writeCsvFile(type, username, value, privateMessage)
         }
     }
 
-    fun writeCsvFile(type: String, username: String?, value: String?) {
-        val message = "$type,$username,$value"
+    fun writeCsvFile(type: String, username: String?, value: String?, privateMessage: String?) {
+        val message = "$type,$username,$value,$privateMessage"
         writeLineToFile(message, csvFilename)
     }
 }

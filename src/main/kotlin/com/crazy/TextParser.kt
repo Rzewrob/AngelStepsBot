@@ -3,7 +3,9 @@ package com.crazy
 open class TextParser {
 
     open lateinit var usernameText: String
-    open lateinit var valueText: String
+    open var valueText: String = "display-name"
+    open var userMessage1: String = "user-type"
+    open var userMessage2: String = "vip"
 
     fun parseMessage(message: String): List<Pair<String, String>> {
         return message.split(";").map {
@@ -16,11 +18,21 @@ open class TextParser {
         return map.find { it.first == text }?.second
     }
 
-    fun getStuff(message: String): Pair<String, String> {
+    fun getPrivateMessage(map: List<Pair<String, String>>): String? {
+        var privateMessage = getValue(userMessage1, map)
+        if (privateMessage.isNullOrBlank()) {
+            privateMessage = getValue(userMessage2, map)
+        }
+
+        return privateMessage?.substringAfter("#angel_steps")?.trim()
+    }
+
+    fun getStuff(message: String): Triple<String, String, String> {
         val map = parseMessage(message)
         val username = getValue(usernameText, map) ?: "UNKNOWN"
         val value = getValue(valueText, map) ?: "UNKNOWN"
-        return Pair(username, value)
+        val privateMessage = getPrivateMessage(map) ?: "UNKNOWN"
+        return Triple(username, value, privateMessage)
     }
 }
 

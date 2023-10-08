@@ -4,11 +4,9 @@ import com.crazy.FileWriter;
 import com.crazy.SubParser;
 import com.gikk.twirk.Twirk;
 import com.gikk.twirk.enums.USER_TYPE;
-import com.gikk.twirk.types.notice.Notice;
-import com.gikk.twirk.types.twitchMessage.TwitchMessage;
 import com.gikk.twirk.types.usernotice.Usernotice;
 import com.gikk.twirk.types.users.TwitchUser;
-import kotlin.Pair;
+import kotlin.Triple;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -76,8 +74,8 @@ public class SubPattern extends SubAny {
 
 //        fileWriter.writeLineToFile("New Sub: " + ChValue, null);
 
-        Pair<String, String> results = subParser.getStuff(TMessage);
-        fileWriter.writeToFileFancier("Sub", results.getFirst(), results.getSecond());
+        Triple<String, String, String> results = subParser.getStuff(TMessage);
+        fileWriter.writeToFileFancier("Sub", results.getFirst(), results.getSecond(), results.getThird());
         if(ChValue == 1)
         {
             SubCount = ChValue;

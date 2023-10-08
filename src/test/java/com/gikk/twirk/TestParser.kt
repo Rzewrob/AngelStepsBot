@@ -13,6 +13,7 @@ class TestParser {
         val message = "@badge-info=subscriber/22;badges=vip/1,subscriber/18,sub-gift-leader/3;bits=15;color=#9ACD32;display-name=LilFr0stey;emotes=;first-msg=0;flags=;id=9ee79c53-8566-49cf-ad6c-8f71080e2a89;mod=0;returning-chatter=0;room-id=550565368;subscriber=1;tmi-sent-ts=1696626659073;turbo=0;user-id=188254807;user-type=;vip=1 :lilfr0stey!lilfr0stey@lilfr0stey.tmi.twitch.tv PRIVMSG #angel_steps :Cheer15 Angle, you'll get to see me and Nogard in this game, we're both eldritch horrors"
         val parser = CheerParser()
 
+        val parsed = parser.parseMessage(message)
         val usernameAndBits = parser.getStuff(message)
 //        Assert.assertTrue("Check the bits parser", (usernameAndBits == Pair("WhosMontu", "1")))
     }

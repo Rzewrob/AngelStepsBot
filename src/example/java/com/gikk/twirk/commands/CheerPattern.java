@@ -6,10 +6,8 @@ import com.gikk.twirk.Twirk;
 import com.gikk.twirk.enums.USER_TYPE;
 import com.gikk.twirk.types.twitchMessage.TwitchMessage;
 import com.gikk.twirk.types.users.TwitchUser;
-import kotlin.Pair;
+import kotlin.Triple;
 
-import java.util.Calendar;
-import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -81,9 +79,9 @@ public class CheerPattern extends CommandExampleBase {
             ChValue  =  Integer.parseInt(m.group(1));
         }
         CheerCount += ChValue;
-        Pair<String, String> results = cheerParser.getStuff(message.toString());
+        Triple<String, String, String> results = cheerParser.getStuff(message.toString());
 //        fileWriter.writeLineToFile("New Bits: " + ChValue, null);
-        fileWriter.writeToFileFancier("Bits", results.getFirst(), results.getSecond());
+        fileWriter.writeToFileFancier("Bits", results.getFirst(), results.getSecond(), results.getThird());
         CheerValue += CheerCount;
         CheerValue = CheerValue/100;
 
