@@ -69,38 +69,53 @@ public class SubPattern extends SubAny {
 //        {
 //            tiervalue *= 5;
 //        }
-        SubCount += ChValue;
-        fileWriter.writeLineToFile("New Sub: " + ChValue );
-        SubValue += (5 * ChValue);
 
         if(ChValue == 1)
         {
-            Tier1 += ChValue;
+            SubCount = ChValue;
+            fileWriter.writeLineToFile("New Sub: " + ChValue );
+            SubValue = (5 * ChValue);
+            Tier1++;
             System.out.println("Tier 1 Count: " + Tier1);
             twirk.setTier1(Tier1);
+            // twirk.channelMessage("Count: " + count);
+            System.out.println("Sub Count: " + SubCount);
+            System.out.println("Sub Value: " + SubValue);
+            twirk.setSubcount(SubCount);
+            twirk.setSubValue(SubValue);
         }
         else if (ChValue == 2)
         {
-            Tier2 += ChValue;
+            SubCount = ChValue;
+            SubValue = (5 * ChValue);
+            Tier2++;
             System.out.println("Tier 2 Count: " + Tier2);
             twirk.setTier2(Tier2);
+            // twirk.channelMessage("Count: " + count);
+            System.out.println("Sub Count: " + SubCount);
+            System.out.println("Sub Value: " + SubValue);
+            twirk.setSubcount(SubCount);
+            twirk.setSubValue(SubValue);
         }
         else if ( ChValue == 3)
         {
-            Tier3 += ChValue;
+            SubCount = 5;
+            SubValue = (5 * 5);
+            Tier3++;
             System.out.println("Tier 3 Count: " + Tier3);
             twirk.setTier3(Tier3);
+            // twirk.channelMessage("Count: " + count);
+            System.out.println("Sub Count: " + SubCount);
+            System.out.println("Sub Value: " + SubValue);
+            twirk.setSubcount(SubCount);
+            twirk.setSubValue(SubValue);
         }
         else
         {
             System.out.println("Hmm not recongized tier size debug this?");
         }
 
-        // twirk.channelMessage("Count: " + count);
-        System.out.println("Sub Count: " + SubCount);
-        System.out.println("Sub Value: " + SubValue);
-        twirk.setSubcount(SubCount);
-        twirk.setSubValue(SubValue);
+
     }
 }
 
