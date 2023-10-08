@@ -21,8 +21,8 @@ class FileWriter { // This is just intended to play around, so don't mind the me
     
     fun createFile(filenameToCreate: String) {
         try {
-            println("Creating File $filename")
-            if (!File(filename).exists()) {
+            println("Creating File $filenameToCreate")
+            if (!File(filenameToCreate).exists()) {
                 File(filenameToCreate).writeText("File $filenameToCreate Started at $now")
                 println("Created File $filenameToCreate")
             } else {
