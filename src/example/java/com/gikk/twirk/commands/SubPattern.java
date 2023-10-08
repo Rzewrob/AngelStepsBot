@@ -1,5 +1,6 @@
 package com.gikk.twirk.commands;
 
+import com.crazy.FileWriter;
 import com.gikk.twirk.Twirk;
 import com.gikk.twirk.enums.USER_TYPE;
 import com.gikk.twirk.types.notice.Notice;
@@ -23,9 +24,12 @@ public class SubPattern extends SubAny {
 
     private final Twirk twirk;
 
-    public SubPattern(Twirk twirk) {
+    private final FileWriter fileWriter;
+
+    public SubPattern(Twirk twirk, FileWriter fileWriter) {
         super(CommandType.TAG_COMMAND);
         this.twirk = twirk;
+        this.fileWriter = fileWriter;
     }
 
     @Override
@@ -66,6 +70,7 @@ public class SubPattern extends SubAny {
 //            tiervalue *= 5;
 //        }
         SubCount += ChValue;
+        fileWriter.writeLineToFile("New Sub: " + ChValue );
         SubValue += (5 * ChValue);
 
         if(ChValue == 1)

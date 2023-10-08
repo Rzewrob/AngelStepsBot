@@ -41,7 +41,7 @@ public class BotExample {
 		twirk.addIrcListener( new PrefixCommandExample(twirk) );
 		twirk.addIrcListener(new PatternTest(twirk));
 		twirk.addIrcListener(new CheerPattern(twirk, fileWriter) );
-		twirk.addIrcListener(new SubPattern(twirk) );
+		twirk.addIrcListener(new SubPattern(twirk, fileWriter) );
 
 		System.out.println("To reconnect to Twitch, type .reconnect and press Enter");
 		System.out.println("To exit this example, type .quit and press Enter");
