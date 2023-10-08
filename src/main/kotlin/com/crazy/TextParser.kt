@@ -2,8 +2,8 @@ package com.crazy
 
 open class TextParser {
 
-    open lateinit var usernameText: String
-    open var valueText: String = "display-name"
+    open var usernameText: String = "display-name"
+    open lateinit var valueText: String
     open var userMessage1: String = "user-type"
     open var userMessage2: String = "vip"
 
