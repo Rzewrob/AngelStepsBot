@@ -23,6 +23,9 @@ public class BotExample {
 	public int MoneyValue = 0;
 	public int Bitcount =0;
 	public int Subcount =0;
+
+	private final static String patternA = "!subcount";
+	private final static String patternB = "!bitcount";
 	public static void main(String[] args) throws IOException, InterruptedException{		
 		System.out.println("Welcome to this Bot example. In this example you will be able \n"
 				         + "to send and receive messages from a Twitch chat channel. You will \n"
@@ -70,7 +73,16 @@ public class BotExample {
 			else
 			{
 				//Any message typed in bot will be posted in twitch chat...
-				twirk.channelMessage(line);
+//				twirk.channelMessage(line);
+				if(line.equals(patternA) ) {
+					System.out.println("**** Current Subs: " + twirk.getSubcount() + " for a value of " + String.format("%.2f",twirk.getSubValue()));
+					System.out.println("**** Tier1Subs: " + twirk.getTier1() + " | Tier2Subs: " + twirk.getTier2() + " | Tier3Subs: " + twirk.getTier3());
+				}
+				else if(line.equals(patternB) ) {
+					System.out.println("**** Current Bits: " + twirk.getCheerCount() + " for a value of " + String.format("%.2f",twirk.getCheervalue()));
+				} else {
+					System.out.println("**** Unknown Command ****");
+				}
 			}
 		}
 
