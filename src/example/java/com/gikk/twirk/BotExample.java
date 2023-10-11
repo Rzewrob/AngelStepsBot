@@ -82,15 +82,23 @@ public class BotExample {
 				} else if(line.equals(patternB) ) {
 					System.out.println("**** Current Bits: " + twirk.getCheerCount() + " for a value of " + String.format("%.2f",twirk.getCheervalue()));
 				} else if(line.contains(patternC) ) {
-					String newValue = line.replace(patternC, "").trim();
-					int cheerCount = twirk.getCheerCount();
-					twirk.setCheerCount(Integer.parseInt(newValue));
-					System.out.println("**** Changed Bits - Current: " + cheerCount + " - New: " + newValue );
+					try {
+						String newValue = line.replace(patternC, "").trim();
+						int cheerCount = twirk.getCheerCount();
+						twirk.setCheerCount(Integer.parseInt(newValue));
+						System.out.println("**** Changed Bits - Current: " + cheerCount + " - New: " + newValue);
+					} catch (Exception e) {
+						System.out.println("**** Command Error - " + e);
+					}
 				} else if (line.contains(patternD)){
-					String newValue = line.replace(patternD, "").trim();
-					int subcount = twirk.getSubcount();
-					twirk.setSubcount(Integer.parseInt(newValue));
-					System.out.println("**** Changed Subs - Current: " + subcount + " - New: " + newValue );
+					try {
+						String newValue = line.replace(patternD, "").trim();
+						int subcount = twirk.getSubcount();
+						twirk.setSubcount(Integer.parseInt(newValue));
+						System.out.println("**** Changed Subs - Current: " + subcount + " - New: " + newValue );
+					} catch (Exception e) {
+						System.out.println("**** Command Error - " + e);
+					}
 				} else {
 					System.out.println("**** Unknown Command ****");
 				}
