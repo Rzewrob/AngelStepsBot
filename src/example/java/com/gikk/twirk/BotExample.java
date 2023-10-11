@@ -26,7 +26,9 @@ public class BotExample {
 
 	private final static String patternA = "!subcount";
 	private final static String patternB = "!bitcount";
-	public static void main(String[] args) throws IOException, InterruptedException{		
+	private final static String patternC = "!setbits";
+	private final static String patternD = "!setsubs";
+	public static void main(String[] args) throws IOException, InterruptedException{
 		System.out.println("Welcome to this Bot example. In this example you will be able \n"
 				         + "to send and receive messages from a Twitch chat channel. You will \n"
 				         + "make all input directly here in the command prompt. \n\n"
@@ -77,11 +79,18 @@ public class BotExample {
 				if(line.equals(patternA) ) {
 					System.out.println("**** Current Subs: " + twirk.getSubcount() + " for a value of " + String.format("%.2f",twirk.getSubValue()));
 					System.out.println("**** Tier1Subs: " + twirk.getTier1() + " | Tier2Subs: " + twirk.getTier2() + " | Tier3Subs: " + twirk.getTier3());
-				}
-				else if(line.equals(patternB) ) {
+				} else if(line.equals(patternB) ) {
 					System.out.println("**** Current Bits: " + twirk.getCheerCount() + " for a value of " + String.format("%.2f",twirk.getCheervalue()));
-				} else {
-					System.out.println("**** Unknown Command ****");
+				} else if(line.contains(patternC) ) {
+					String newValue = line.replace(patternC, "").trim();
+					int cheerCount = twirk.getCheerCount();
+					twirk.setCheerCount(Integer.parseInt(newValue));
+					System.out.println("**** Changed Bits - Current: " + cheerCount + " - New: " + newValue );
+				}else {
+					String newValue = line.replace(patternD, "").trim();
+					int subcount = twirk.getSubcount();
+					twirk.setSubcount(Integer.parseInt(newValue));
+					System.out.println("**** Changed Subs - Current: " + subcount + " - New: " + newValue );
 				}
 			}
 		}
