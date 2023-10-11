@@ -4,8 +4,8 @@ open class TextParser {
 
     open var usernameText: String = "display-name"
     open lateinit var valueText: String
-    open var userMessage1: String = "user-type"
-    open var userMessage2: String = "vip"
+    open var userMessage1: String = "vip"
+    open var userMessage2: String = "user-type"
 
     fun parseMessage(message: String): List<Pair<String, String>> {
         return message.split(";").map {

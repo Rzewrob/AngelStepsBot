@@ -45,7 +45,7 @@ public class BotExample {
 		
 		twirk.addIrcListener( getOnDisconnectListener(twirk) );
 		//twirk.addIrcListener( new PatternCommandExample(twirk) );
-		twirk.addIrcListener( new PrefixCommandExample(twirk) );
+//		twirk.addIrcListener( new PrefixCommandExample(twirk) );
 		twirk.addIrcListener(new PatternTest(twirk));
 		twirk.addIrcListener(new CheerPattern(twirk, fileWriter, cheerParser) );
 		twirk.addIrcListener(new SubPattern(twirk, fileWriter, subParser) );

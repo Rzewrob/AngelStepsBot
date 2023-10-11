@@ -486,7 +486,7 @@ public final class Twirk {
 
             //This message is a reply for a capacity request. Just ignore it
             String s = message.getCommand();
-			this.fileWriter.writeLineToFile(s, null);
+			this.fileWriter.writeLineToFile(message.getRaw(), null);
             switch (s) {
                 case "JOIN":
                 {
