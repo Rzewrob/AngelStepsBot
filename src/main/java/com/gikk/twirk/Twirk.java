@@ -1,5 +1,6 @@
 package com.gikk.twirk;
 
+import com.crazy.FileWriter;
 import com.gikk.twirk.events.TwirkListener;
 import com.gikk.twirk.types.clearChat.ClearChat;
 import com.gikk.twirk.types.clearChat.ClearChatBuilder;
@@ -21,13 +22,11 @@ import com.gikk.twirk.types.users.TwitchUser;
 import com.gikk.twirk.types.users.TwitchUserBuilder;
 import com.gikk.twirk.types.users.Userstate;
 import com.gikk.twirk.types.users.UserstateBuilder;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
+
+import java.io.*;
 import java.net.Socket;
 import java.nio.charset.StandardCharsets;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -105,6 +104,8 @@ public final class Twirk {
 	private int Tier1 = 0;
 	private int Tier2 = 0;
 	private int Tier3 = 0;
+
+	private FileWriter fileWriter;
 	//***********************************************************************************************
 	//											CONSTRUCTOR
 	//***********************************************************************************************
@@ -132,6 +133,9 @@ public final class Twirk {
         this.pingIntervalSeconds = builder.getPingInterval();
 
 		this.queue = new OutputQueue();
+
+		this.fileWriter = new FileWriter();
+		this.fileWriter.initFiles("dumpTestFullLog"+ LocalDateTime.now().toString().replace(":", ""));
 
 		addIrcListener( new TwirkMaintainanceListener(this) );
 	}
@@ -482,6 +486,7 @@ public final class Twirk {
 
             //This message is a reply for a capacity request. Just ignore it
             String s = message.getCommand();
+			this.fileWriter.writeLineToFile(s, null);
             switch (s) {
                 case "JOIN":
                 {
