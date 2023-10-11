@@ -86,11 +86,13 @@ public class BotExample {
 					int cheerCount = twirk.getCheerCount();
 					twirk.setCheerCount(Integer.parseInt(newValue));
 					System.out.println("**** Changed Bits - Current: " + cheerCount + " - New: " + newValue );
-				}else {
+				} else if (line.contains(patternD)){
 					String newValue = line.replace(patternD, "").trim();
 					int subcount = twirk.getSubcount();
 					twirk.setSubcount(Integer.parseInt(newValue));
 					System.out.println("**** Changed Subs - Current: " + subcount + " - New: " + newValue );
+				} else {
+					System.out.println("**** Unknown Command ****");
 				}
 			}
 		}
