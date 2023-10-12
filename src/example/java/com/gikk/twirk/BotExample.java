@@ -65,6 +65,11 @@ public class BotExample {
 				//Close the connection to Twitch, and release all resources. This will not fire the onDisconnect
 				//method
 				twirk.close();
+				int cheerCount = twirk.getCheerCount();
+				int subcount = twirk.getSubcount();
+				String textToDump = "**** Final Bits: " + cheerCount + " - Final Subs: " + subcount;
+				System.out.println(textToDump);
+				fileWriter.writeLineToFile(textToDump, null);
 				break;
 			}
 			else if(".reconnect".equals(line)) {
