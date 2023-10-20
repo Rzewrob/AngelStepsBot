@@ -44,7 +44,7 @@ public class SubPattern extends SubAny {
         return USER_TYPE.DEFAULT;
     }
 
-    @Override
+     @Override
     protected void performCommand(TwitchUser sender, Usernotice usernotice) {
         System.out.println("Recongized a Sub from " + sender.getUserName() + " for " + usernotice.getRaw());
         int ChValue = 0;
@@ -52,19 +52,22 @@ public class SubPattern extends SubAny {
         String TMessage = usernotice.getRaw();
         System.out.println("Tag = " + TMessage);
         Pattern p = Pattern.compile("msg-param-sub-plan=(\\d*);");
+        Pattern Prime = Pattern.compile("msg-param-sub-plan=(.*?);");
         Pattern Tier = Pattern.compile("sTier\\"+"(s\\d*\\)");
         Matcher m = p.matcher(TMessage);
+        Matcher PrimeMatcher  = Prime.matcher(TMessage);
         Matcher m2 = Tier.matcher(TMessage);
-        if (m.find())
+        if (PrimeMatcher.find())
         {
-            if (m.group(1).equals("Prime"))
+            if (PrimeMatcher.group(1).equals("Prime"))
             {
                 ChValue = 1;
+                //System.out.println("Hit Prime Check");
             }
-            else {
-                ChValue = Integer.parseInt(m.group(1));
-            }
-            //tiervalue = Integer.parseInt(m2.group(1));
+        }
+        if(m.find())
+        {
+            ChValue = Integer.parseInt(m.group(1));
             ChValue /= 1000;
         }
 //        if(tiervalue == 3)
@@ -72,52 +75,39 @@ public class SubPattern extends SubAny {
 //            tiervalue *= 5;
 //        }
 
-//        fileWriter.writeLineToFile("New Sub: " + ChValue, null);
+//         fileWriter.writeLineToFile("New Sub: " + ChValue, null);
 
         Triple<String, String, String> results = subParser.getStuff(TMessage);
         fileWriter.writeToFileFancier("Sub", results.getFirst(), results.getSecond(), results.getThird());
         if(ChValue == 1)
         {
-            SubCount = ChValue;
-            SubValue = (5 * ChValue);
+            SubCount += ChValue;
             Tier1++;
             System.out.println("Tier 1 Count: " + Tier1);
             twirk.setTier1(Tier1);
             // twirk.channelMessage("Count: " + count);
-            System.out.println("Sub Count: " + SubCount);
-            System.out.println("Sub Value: " + SubValue);
-            twirk.setSubcount(SubCount);
-            twirk.setSubValue(SubValue);
         }
         else if (ChValue == 2)
         {
-            SubCount = ChValue;
-            SubValue = (5 * ChValue);
+            SubCount += ChValue;
             Tier2++;
             System.out.println("Tier 2 Count: " + Tier2);
             twirk.setTier2(Tier2);
             // twirk.channelMessage("Count: " + count);
-            System.out.println("Sub Count: " + SubCount);
-            System.out.println("Sub Value: " + SubValue);
-            twirk.setSubcount(SubCount);
-            twirk.setSubValue(SubValue);
+
         }
         else if ( ChValue == 3)
         {
-            SubCount = 5;
-            SubValue = (5 * 5);
+            SubCount += 5;
             Tier3++;
             System.out.println("Tier 3 Count: " + Tier3);
             twirk.setTier3(Tier3);
             // twirk.channelMessage("Count: " + count);
-            System.out.println("Sub Count: " + SubCount);
-            System.out.println("Sub Value: " + SubValue);
-            twirk.setSubcount(SubCount);
-            twirk.setSubValue(SubValue);
+
         }
         else
         {
-            System.out.println("Hmm not recongized tier size debug this?");
+            System.out.println("*****Hmm not recongized tier size debug this?*****");
         }
 
 
