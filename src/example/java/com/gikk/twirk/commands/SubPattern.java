@@ -78,7 +78,7 @@ public class SubPattern extends SubAny {
 //         fileWriter.writeLineToFile("New Sub: " + ChValue, null);
 
         Triple<String, String, String> results = subParser.getStuff(TMessage);
-        fileWriter.writeToFileFancier("Sub", results.getFirst(), results.getSecond(), results.getThird());
+        fileWriter.writeToBitCheerFile("Sub", results.getFirst(), results.getSecond(), results.getThird());
         if(ChValue == 1)
         {
             SubCount += ChValue;

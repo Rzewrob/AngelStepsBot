@@ -1,0 +1,9 @@
+{
+  "writeFullFileDump": true,
+  "fullFileDumpName": "FullDump",
+  "writeBitCheerFile": true,
+  "bitCheerFileName": "dumpTest",
+  "writeMessageFile": true,
+  "messageFileName": "MessageDump",
+  "writeCsvFile": false
+}

@@ -1,6 +1,7 @@
 package com.gikk.twirk;
 
 import com.crazy.FileWriter;
+import com.crazy.models.FileWriterType;
 import com.gikk.twirk.events.TwirkListener;
 import com.gikk.twirk.types.clearChat.ClearChat;
 import com.gikk.twirk.types.clearChat.ClearChatBuilder;
@@ -105,7 +106,7 @@ public final class Twirk {
 	private int Tier2 = 0;
 	private int Tier3 = 0;
 
-	private FileWriter fileWriter;
+	FileWriter fileWriter;
 	//***********************************************************************************************
 	//											CONSTRUCTOR
 	//***********************************************************************************************
@@ -135,7 +136,7 @@ public final class Twirk {
 		this.queue = new OutputQueue();
 
 		this.fileWriter = new FileWriter();
-		this.fileWriter.initFiles("dumpTestFullLog"+ LocalDateTime.now().toString().replace(":", ""));
+		this.fileWriter.initFiles();
 
 		addIrcListener( new TwirkMaintainanceListener(this) );
 	}
@@ -486,7 +487,7 @@ public final class Twirk {
 
             //This message is a reply for a capacity request. Just ignore it
             String s = message.getCommand();
-			this.fileWriter.writeLineToFile(message.getRaw(), null);
+			this.fileWriter.writeLineToFile(message.getRaw(), FileWriterType.FullDump);
             switch (s) {
                 case "JOIN":
                 {

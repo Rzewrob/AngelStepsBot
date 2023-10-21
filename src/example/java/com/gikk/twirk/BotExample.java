@@ -1,8 +1,9 @@
 package com.gikk.twirk;
 
 import com.crazy.CheerParser;
-import com.crazy.FileWriter;
+import com.crazy.GenericParser;
 import com.crazy.SubParser;
+import com.crazy.models.FileWriterType;
 import com.gikk.twirk.commands.*;
 import com.gikk.twirk.events.TwirkListener;
 import java.io.IOException;
@@ -40,17 +41,18 @@ public class BotExample {
 								.setVerboseMode(true)
 								.build();
 
-		final FileWriter fileWriter = new FileWriter();
-		fileWriter.initFiles(null);
+
 		final CheerParser cheerParser = new CheerParser();
 		final SubParser subParser = new SubParser();
-		
+		final GenericParser genericParser = new GenericParser();
+
 		twirk.addIrcListener( getOnDisconnectListener(twirk) );
 		//twirk.addIrcListener( new PatternCommandExample(twirk) );
 //		twirk.addIrcListener( new PrefixCommandExample(twirk) );
 		twirk.addIrcListener(new PatternTest(twirk));
-		twirk.addIrcListener(new CheerPattern(twirk, fileWriter, cheerParser) );
-		twirk.addIrcListener(new SubPattern(twirk, fileWriter, subParser) );
+		twirk.addIrcListener(new CheerPattern(twirk, twirk.fileWriter, cheerParser) );
+		twirk.addIrcListener(new SubPattern(twirk, twirk.fileWriter, subParser) );
+		twirk.addIrcListener(new MessagePattern(twirk, twirk.fileWriter, genericParser) );
 
 		System.out.println("To reconnect to Twitch, type .reconnect and press Enter");
 		System.out.println("To exit this example, type .quit and press Enter");
@@ -69,7 +71,7 @@ public class BotExample {
 				int subcount = twirk.getSubcount();
 				String textToDump = "**** Final Bits: " + cheerCount + " - Final Subs: " + subcount;
 				System.out.println(textToDump);
-				fileWriter.writeLineToFile(textToDump, null);
+				twirk.fileWriter.writeLineToFile(textToDump, FileWriterType.BitCheerFile);
 				break;
 			}
 			else if(".reconnect".equals(line)) {

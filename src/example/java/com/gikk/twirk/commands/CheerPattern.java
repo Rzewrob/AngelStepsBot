@@ -81,7 +81,7 @@ public class CheerPattern extends CommandExampleBase {
         CheerCount += ChValue;
         Triple<String, String, String> results = cheerParser.getStuff(message.toString());
 //        fileWriter.writeLineToFile("New Bits: " + ChValue, null);
-        fileWriter.writeToFileFancier("Bits", results.getFirst(), results.getSecond(), results.getThird());
+        fileWriter.writeToBitCheerFile("Bits", results.getFirst(), results.getSecond(), results.getThird());
         CheerValue += CheerCount;
         CheerValue = CheerValue/100;
 

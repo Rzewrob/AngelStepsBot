@@ -45,3 +45,8 @@ class SubParser: TextParser() {
     override var usernameText: String = "display-name"
     override var valueText: String = "msg-param-sub-plan"
 }
+
+class GenericParser: TextParser() {
+    override var usernameText: String = "display-name"
+    override var valueText: String = ""
+}
