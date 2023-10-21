@@ -80,7 +80,7 @@ class FileWriter { // This is just intended to play around, so don't mind the me
     }
 
     fun writeToBitCheerFile(type: String, username: String?, value: String?, privateMessage: String?) {
-        if (value != null && value.toInt() > 0) {
+        if (value != null && (value.toIntOrNull() ?: 0) {
             writeLineToFile("$username - New $type: $value - $privateMessage", FileWriterType.BitCheerFile)
             if (config.writeCsvFile) {
                 writeCsvFile(type, username, value, privateMessage)
