@@ -85,6 +85,7 @@ public class SubPattern extends SubAny {
             Tier1++;
             System.out.println("Tier 1 Count: " + Tier1);
             twirk.setTier1(Tier1);
+            twirk.setSubcount(SubCount);
             // twirk.channelMessage("Count: " + count);
         }
         else if (ChValue == 2)
@@ -93,6 +94,7 @@ public class SubPattern extends SubAny {
             Tier2++;
             System.out.println("Tier 2 Count: " + Tier2);
             twirk.setTier2(Tier2);
+            twirk.setSubcount(SubCount);
             // twirk.channelMessage("Count: " + count);
 
         }
@@ -102,6 +104,7 @@ public class SubPattern extends SubAny {
             Tier3++;
             System.out.println("Tier 3 Count: " + Tier3);
             twirk.setTier3(Tier3);
+            twirk.setSubcount(SubCount);
             // twirk.channelMessage("Count: " + count);
 
         }
