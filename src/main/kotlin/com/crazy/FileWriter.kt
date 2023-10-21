@@ -9,12 +9,12 @@ import java.time.LocalDateTime
 class FileWriter { // This is just intended to play around, so don't mind the mess
 
     private val now = LocalDateTime.now().toString().replace(":", "")
-    private val defaultFileName = "unknownFileDump_$now"
+    private val defaultFileName = "Dump_FallbackName"
 
-    private lateinit var bitCheerFileName: String
-    private lateinit var bitCheerFileNameCsv: String
-    private lateinit var messageFileName: String
-    private lateinit var fullDumpFileName: String
+    private var bitCheerFileName: String = "${defaultFileName}_DonoFile_${now}.txt"
+    private var bitCheerFileNameCsv: String = "${defaultFileName}_DonoCsVFile_${now}.csv"
+    private var messageFileName: String = "${defaultFileName}_MessageFile_${now}.txt"
+    private var fullDumpFileName: String = "${defaultFileName}_FullFile_${now}.txt"
 
     private lateinit var config: FileWriterConfig
 
@@ -25,7 +25,7 @@ class FileWriter { // This is just intended to play around, so don't mind the me
             bitCheerFileName = setFileName(config.bitCheerFileName)
             createFile(bitCheerFileName)
             if (config.writeCsvFile) {
-                bitCheerFileName = setFileName(config.bitCheerFileName, "csv")
+                bitCheerFileNameCsv = setFileName(config.bitCheerFileName, "csv")
                 createFile(bitCheerFileNameCsv)
             }
         }

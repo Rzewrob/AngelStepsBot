@@ -2,8 +2,8 @@
   "writeFullFileDump": true,
   "fullFileDumpName": "FullDump",
   "writeBitCheerFile": true,
-  "bitCheerFileName": "dumpTest",
+  "bitCheerFileName": "Donation-log",
   "writeMessageFile": true,
-  "messageFileName": "MessageDump",
-  "writeCsvFile": false
+  "messageFileName": "Message-log",
+  "writeCsvFile": true
 }
