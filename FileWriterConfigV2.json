@@ -1,0 +1,13 @@
+{
+  "filePrefix": "Dump_",
+  "fileDefinitions": [
+    {
+      "id": "dono",
+      "fileName": "Dono-log",
+      "fileExtension": "txt",
+      "patterns": [],
+      "writeFileHeader": true,
+      "includeTimeStamp": true
+    }
+  ]
+}

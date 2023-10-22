@@ -50,9 +50,9 @@ public class BotExample {
 		//twirk.addIrcListener( new PatternCommandExample(twirk) );
 //		twirk.addIrcListener( new PrefixCommandExample(twirk) );
 		twirk.addIrcListener(new PatternTest(twirk));
-		twirk.addIrcListener(new CheerPattern(twirk, twirk.fileWriter, cheerParser) );
-		twirk.addIrcListener(new SubPattern(twirk, twirk.fileWriter, subParser) );
-		twirk.addIrcListener(new MessagePattern(twirk, twirk.fileWriter, genericParser) );
+		twirk.addIrcListener(new CheerPattern(twirk, twirk.fileWriterV1, cheerParser) );
+		twirk.addIrcListener(new SubPattern(twirk, twirk.fileWriterV1, subParser) );
+		twirk.addIrcListener(new MessagePattern(twirk, twirk.fileWriterV1, genericParser) );
 
 		System.out.println("To reconnect to Twitch, type .reconnect and press Enter");
 		System.out.println("To exit this example, type .quit and press Enter");
@@ -71,7 +71,7 @@ public class BotExample {
 				int subcount = twirk.getSubcount();
 				String textToDump = "**** Final Bits: " + cheerCount + " - Final Subs: " + subcount;
 				System.out.println(textToDump);
-				twirk.fileWriter.writeLineToFile(textToDump, FileWriterType.BitCheerFile);
+				twirk.fileWriterV1.writeLineToFile(textToDump, FileWriterType.BitCheerFile);
 				break;
 			}
 			else if(".reconnect".equals(line)) {
