@@ -1,11 +1,13 @@
 package com.crazy
 
-import com.crazy.models.FileDefinition
 import com.crazy.models.FileWriterConfigV2
 import com.crazy.models.FileWriterType
 import com.fasterxml.jackson.databind.ObjectMapper
 import java.io.File
 import java.time.LocalDateTime
+import java.util.regex.Matcher
+import java.util.regex.Pattern
+
 
 class FileWriterV2 { // This is just intended to play around, so don't mind the mess
 
@@ -13,6 +15,8 @@ class FileWriterV2 { // This is just intended to play around, so don't mind the 
     private lateinit var config: FileWriterConfigV2
 
     private var patterns = mutableListOf<String>()
+
+    private var parser = ParserV2()
 
     fun initFiles(configOverride: FileWriterConfigV2? = null) {
         config = configOverride ?: getConfigFileOrDefaults()
@@ -89,6 +93,7 @@ class FileWriterV2 { // This is just intended to play around, so don't mind the 
                 file.patterns.forEach {
                     if (matchList.contains(it.findPattern)) {
                         File(file.fullFileName).appendText("\n$message" )
+                        getMessage(message, it.messagePattern)
                     }
                 }
             }
@@ -97,6 +102,30 @@ class FileWriterV2 { // This is just intended to play around, so don't mind the 
         } else {
             println("NO BANANAS!")
         }
+    }
+
+    private fun getMessage(message: String, findPattern: String) {
+
+        val matchList: MutableList<String> = ArrayList()
+        val regex: Pattern = Pattern.compile("~(.*?)~")
+        val regexMatcher: Matcher = regex.matcher(findPattern)
+
+        while (regexMatcher.find()) { //Finds Matching Pattern in String
+            matchList.add(regexMatcher.group(1)) //Fetching Group from String
+        }
+
+        var newMessage = findPattern
+
+        for (str in matchList) {
+            val parserMap = parserMap[str] ?: throw Exception() // TODO Fix
+            val map = parser.parseMessage(message)
+            val stuff = parser.getValue(map, parserMap)
+            newMessage = newMessage.replace("~$str~", stuff)
+            println(str)
+        }
+
+        println(newMessage)
+
     }
 
 

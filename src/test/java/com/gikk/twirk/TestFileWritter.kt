@@ -12,7 +12,7 @@ class TestFileWritter {
     private val cheerMessage = "@badge-info=;badges=glhf-pledge/1;bits=1;color=#0000FF;display-name=WhosMontu;emotes=;first-msg=1;flags=;id=998b364d-b7ed-4b82-9d9e-a7046122b9f0;mod=0;returning-chatter=0;room-id=641972806;" +
             "subscriber=0;tmi-sent-ts=1690439036917;turbo=0;user-id=464801243;user-type= :whosmontu!whosmontu@whosmontu.tmi.twitch.tv PRIVMSG #kaicenat :Cheer1"
 
-    private val patternDefinition1 = FilePatterns("bits=", "")
+    private val patternDefinition1 = FilePatterns("bits=", "Username: ~USERNAME~ for ~BITS~ for ~USER_MESSAGE~")
     private val patternDefinition2 = FilePatterns("test=", "")
     private val patternDefinition3 = FilePatterns("", "")
 
