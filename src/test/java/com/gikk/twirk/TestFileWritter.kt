@@ -10,17 +10,19 @@ import org.junit.Test
 class TestFileWritter {
 
     private val cheerMessage = "@badge-info=;badges=glhf-pledge/1;bits=1;color=#0000FF;display-name=WhosMontu;emotes=;first-msg=1;flags=;id=998b364d-b7ed-4b82-9d9e-a7046122b9f0;mod=0;returning-chatter=0;room-id=641972806;" +
-            "subscriber=0;tmi-sent-ts=1690439036917;turbo=0;user-id=464801243;user-type= :whosmontu!whosmontu@whosmontu.tmi.twitch.tv PRIVMSG #kaicenat :Cheer1"
+            "subscriber=0;tmi-sent-ts=1690439036917;turbo=0;user-id=464801243;user-type= :whosmontu!whosmontu@whosmontu.tmi.twitch.tv PRIVMSG #angel_steps :Cheer1 WootWoot"
 
     private val patternDefinition1 = FilePatterns("bits=", "Username: ~USERNAME~ for ~BITS~ for ~USER_MESSAGE~")
     private val patternDefinition2 = FilePatterns("test=", "")
     private val patternDefinition3 = FilePatterns("", "")
+    private val patternDefinition4 = FilePatterns("PRIVMSG", "A ~USER_MESSAGE~")
 
     private val fileDefinition1 = FileDefinition("dono", "Dono-Log", "txt", true, mutableListOf(patternDefinition1), true, true)
     private val fileDefinition2 = FileDefinition("donoCsv", "Dono-Log", "csv", false, mutableListOf(patternDefinition1), false, false)
     private val fileDefinition3 = FileDefinition("test", "test-Log", "txt", true, mutableListOf(patternDefinition2, patternDefinition3), false, false)
+    private val fileDefinition4 = FileDefinition("Message", "message-Log", "txt", true, mutableListOf(patternDefinition4), false, false)
 
-    private val fileDefinitions = mutableListOf(fileDefinition1, fileDefinition2, fileDefinition3)
+    private val fileDefinitions = mutableListOf(fileDefinition1, fileDefinition2, fileDefinition3, fileDefinition4)
 
     private val config = FileWriterConfigV2("Dump_", "", fileDefinitions, true)
 
@@ -35,7 +37,7 @@ class TestFileWritter {
     @Test
     fun doStuff() {
         val message2 = "@badge-info=;badges=glhf-pledge/1;bits=1;color=#0000FF;display-name=WhosMontu;emotes=;first-msg=1;flags=;id=998b364d-b7ed-4b82-9d9e-a7046122b9f0;mod=0;returning-chatter=0;room-id=641972806;" +
-                        "subscriber=0;tmi-sent-ts=1690439036917;turbo=0;user-id=464801243;user-type= :whosmontu!whosmontu@whosmontu.tmi.twitch.tv PRIVMSG #kaicenat :Cheer1"
+                        "subscriber=0;tmi-sent-ts=1690439036917;turbo=0;user-id=464801243;user-type= :whosmontu!whosmontu@whosmontu.tmi.twitch.tv PRIVMSG #angel_steps :Cheer1 WootWoot"
 
         val message = "@badge-info=subscriber/22;badges=vip/1,subscriber/18,sub-gift-leader/3;bits=15;color=#9ACD32;display-name=LilFr0stey;emotes=;first-msg=0;flags=;id=9ee79c53-8566-49cf-ad6c-8f71080e2a89;mod=0;returning-chatter=0;room-id=550565368;subscriber=1;tmi-sent-ts=1696626659073;turbo=0;user-id=188254807;user-type=;vip=1 :lilfr0stey!lilfr0stey@lilfr0stey.tmi.twitch.tv PRIVMSG #angel_steps :Cheer15 Angle, you'll get to see me and Nogard in this game, we're both eldritch horrors"
         val parser = CheerParser()
