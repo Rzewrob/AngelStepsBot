@@ -11,10 +11,12 @@ class ParserV2 {
     }
 
     fun parseMessage(message: String): List<Pair<String, String>> {
-        return message.split(";").map {
+        val map = message.split(";").map {
             val map = it.split("=")
             Pair(map[0], map[1])
-        }
+        }.toMutableList()
+        map.add(Pair("all-text", message))
+        return map
     }
 
     fun getValue(map: List<Pair<String, String>>, parserOption: ParserOptions): String {

@@ -52,14 +52,15 @@ class FileWriterV2 { // This is just intended to play around, so don't mind the 
     
     private fun createFile(fileName: String, fileExtension: String, addFileHeader: Boolean): String {
         val newFileName = setFileName(fileName, fileExtension)
+        val newFileNameWithPath = getFileWithPath(newFileName, config.filesLocation)
         try {
             writeLog("Creating File $newFileName")
-            if (!File(newFileName).exists()) {
+            if (!File(newFileNameWithPath).exists()) {
                 var text = ""
                 if (addFileHeader) {
                     text = "File $newFileName Started at $now"
                 }
-                File(newFileName).writeText(text)
+                File(newFileNameWithPath).writeText(text)
                 writeLog("Created File $newFileName")
             } else {
                 writeLog("File $newFileName already exists, will write to it instead")
@@ -68,6 +69,11 @@ class FileWriterV2 { // This is just intended to play around, so don't mind the 
             writeLog("** [ERROR]: Failed to create file $newFileName - due to: $e")
         }
         return newFileName
+    }
+
+    private fun getFileWithPath(fileName: String, path: String): String {
+        val pathToUse = if (path.isNotEmpty()) "$path/" else ""
+        return "$pathToUse$fileName"
     }
 
     private fun buildPatterns() {
@@ -91,10 +97,19 @@ class FileWriterV2 { // This is just intended to play around, so don't mind the 
             //Temp Crap
             config.fileDefinitions.forEach {file ->
                 file.patterns.forEach {
+                    val timeStamp = if (file.includeTimeStamp) "${LocalDateTime.now()} " else ""
+//                    var fileMessage = ""
+//                    if (it.findPattern == "") {
+//                        fileMessage = message
+//                    }
                     if (matchList.contains(it.findPattern)) {
-                        File(file.fullFileName).appendText("\n$message" )
-                        getMessage(message, it.messagePattern)
+                        val fileMessage = getMessage(message, it.messagePattern)
+                        File(getFileWithPath(file.fullFileName, config.filesLocation)).appendText("\n$timeStamp$fileMessage")
                     }
+
+//                    if (fileMessage.isNotEmpty()) {
+//                        File(getFileWithPath(file.fullFileName, config.filesLocation)).appendText("\n$timeStamp$fileMessage")
+//                    }
                 }
             }
 
@@ -104,7 +119,7 @@ class FileWriterV2 { // This is just intended to play around, so don't mind the 
         }
     }
 
-    private fun getMessage(message: String, findPattern: String) {
+    private fun getMessage(message: String, findPattern: String): String {
 
         val matchList: MutableList<String> = ArrayList()
         val regex: Pattern = Pattern.compile("~(.*?)~")
@@ -124,8 +139,8 @@ class FileWriterV2 { // This is just intended to play around, so don't mind the 
             println(str)
         }
 
-        println(newMessage)
-
+//        println(newMessage)
+        return newMessage
     }
 
 
