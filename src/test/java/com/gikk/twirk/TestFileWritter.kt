@@ -20,17 +20,18 @@ class TestFileWritter {
 
     private val patternDefinition1 = FilePatterns("bits=", "~USERNAME~ - New Bits: ~BITS~ - ~USER_MESSAGE~")
     private val patternDefinition2 = FilePatterns("test=", "")
-    private val patternDefinition3 = FilePatterns("", "")
+    private val patternDefinition3 = FilePatterns("", "~ALL~")
     private val patternDefinition4 = FilePatterns("PRIVMSG", "~USERNAME~ - ~USER_MESSAGE~")
     private val patternDefinition5 = FilePatterns("msg-param-sub-plan=", "~USERNAME~ - New Sub: ~SUBS~")
 
-    private val fileDefinition1 = FileDefinition("dono", "Dono-Log", "txt", true, mutableListOf(patternDefinition1, patternDefinition5), true, true)
-    private val fileDefinition2 = FileDefinition("donoCsv", "Dono-Log", "csv", false, mutableListOf(patternDefinition1), false, false)
-    private val fileDefinition3 = FileDefinition("test", "test-Log", "txt", true, mutableListOf(patternDefinition2, patternDefinition3), false, false)
-    private val fileDefinition4 = FileDefinition("Message", "message-Log", "txt", true, mutableListOf(patternDefinition4), false, false)
-    private val fileDefinition5 = FileDefinition("full", "full-Log", "txt", true, mutableListOf(patternDefinition3), false, false)
+    private val fileDefinitionDono = FileDefinition("dono", "Dono-Log", "txt", true, mutableListOf(patternDefinition1, patternDefinition5), true, true)
+    private val fileDefinitionDonoCsv = FileDefinition("donoCsv", "Dono-Log", "csv", false, mutableListOf(patternDefinition1), false, false)
+    private val fileDefinitionTest = FileDefinition("test", "test-Log", "txt", true, mutableListOf(patternDefinition2, patternDefinition3), false, false)
+    private val fileDefinitionMessage = FileDefinition("Message", "message-Log", "txt", true, mutableListOf(patternDefinition4), false, false)
+    private val fileDefinitionFull = FileDefinition("full", "full-Log", "txt", true, mutableListOf(patternDefinition3), false, false)
 
-    private val fileDefinitions = mutableListOf(fileDefinition1, fileDefinition2, fileDefinition3, fileDefinition4, fileDefinition5)
+    private val fileDefinitions = mutableListOf<FileDefinition>()
+
 
     private val config = FileWriterConfigV2("Dump_", "", fileDefinitions, true)
 
@@ -38,6 +39,12 @@ class TestFileWritter {
 
     @Test
     fun createsFiles() {
+//        fileDefinitions.add(fileDefinitionDono)
+//        fileDefinitions.add(fileDefinitionDonoCsv)
+//        fileDefinitions.add(fileDefinitionTest)
+//        fileDefinitions.add(fileDefinitionMessage)
+        fileDefinitions.add(fileDefinitionFull)
+
         val fileWriter = FileWriterV2()
         fileWriter.initFiles(config)
 

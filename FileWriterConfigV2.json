@@ -3,7 +3,7 @@
   "filesLocation": "",
   "fileDefinitions": [
     {
-      "id": "dono",
+      "id": "Dono",
       "fileName": "Dono-Log",
       "fileExtension": "txt",
       "active": true,
@@ -18,7 +18,7 @@
         }
       ],
       "writeFileHeader": true,
-      "includeTimeStamp": true,
+      "includeTimeStamp": true
     },
     {
       "id": "Message",
@@ -32,7 +32,7 @@
         }
       ],
       "writeFileHeader": false,
-      "includeTimeStamp": false,
+      "includeTimeStamp": false
     },
     {
       "id": "Full",
@@ -46,7 +46,7 @@
         }
       ],
       "writeFileHeader": false,
-      "includeTimeStamp": false,
+      "includeTimeStamp": false
     }
   ],
   "extraLogs": true

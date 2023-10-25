@@ -1,8 +1,6 @@
 package com.gikk.twirk;
 
-import com.crazy.FileWriter;
 import com.crazy.FileWriterV2;
-import com.crazy.models.FileWriterType;
 import com.gikk.twirk.events.TwirkListener;
 import com.gikk.twirk.types.clearChat.ClearChat;
 import com.gikk.twirk.types.clearChat.ClearChatBuilder;
@@ -28,12 +26,7 @@ import com.gikk.twirk.types.users.UserstateBuilder;
 import java.io.*;
 import java.net.Socket;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**Class for communicating with the TwitchIrc chat.<br>
@@ -106,7 +99,6 @@ public final class Twirk {
 	private int Tier2 = 0;
 	private int Tier3 = 0;
 
-	FileWriter fileWriterV1;
 	FileWriterV2 fileWriter;
 	//***********************************************************************************************
 	//											CONSTRUCTOR
@@ -135,9 +127,6 @@ public final class Twirk {
         this.pingIntervalSeconds = builder.getPingInterval();
 
 		this.queue = new OutputQueue();
-
-		this.fileWriterV1 = new FileWriter();
-		this.fileWriterV1.initFiles();
 
 		this.fileWriter = new FileWriterV2();
 		this.fileWriter.initFiles(null);

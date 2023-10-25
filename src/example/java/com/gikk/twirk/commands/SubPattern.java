@@ -1,12 +1,9 @@
 package com.gikk.twirk.commands;
 
-import com.crazy.FileWriter;
-import com.crazy.SubParser;
 import com.gikk.twirk.Twirk;
 import com.gikk.twirk.enums.USER_TYPE;
 import com.gikk.twirk.types.usernotice.Usernotice;
 import com.gikk.twirk.types.users.TwitchUser;
-import kotlin.Triple;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -24,14 +21,9 @@ public class SubPattern extends SubAny {
 
     private final Twirk twirk;
 
-    private final FileWriter fileWriter;
-    private final SubParser subParser;
-
-    public SubPattern(Twirk twirk, FileWriter fileWriter, SubParser subParser) {
+    public SubPattern(Twirk twirk) {
         super(CommandType.TAG_COMMAND);
         this.twirk = twirk;
-        this.fileWriter = fileWriter;
-        this.subParser = subParser;
     }
 
     @Override
@@ -77,8 +69,6 @@ public class SubPattern extends SubAny {
 
 //         fileWriter.writeLineToFile("New Sub: " + ChValue, null);
 
-        Triple<String, String, String> results = subParser.getStuff(TMessage);
-        fileWriter.writeToBitCheerFile("Sub", results.getFirst(), results.getSecond(), results.getThird());
         if(ChValue == 1)
         {
             SubCount += ChValue;

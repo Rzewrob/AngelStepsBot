@@ -148,33 +148,14 @@ class FileWriterV2 { // This is just intended to play around, so don't mind the 
         println(textToWrite)
     }
 
-    fun writeLineToFile(textToWrite: String, fileToWrite: FileWriterType) {
+    fun writeLineToFile(textToWrite: String, fileId: String) {
         try {
-//            val file = getFileNameByType(fileToWrite)
-//            File(file).appendText("\n${LocalDateTime.now()} - $textToWrite")
+            val file = config.fileDefinitions.find { it.id == fileId } ?: throw Exception("File Id $fileId does not exist")
+            File(getFileWithPath(file.fullFileName, config.filesLocation)).appendText("\n$$textToWrite")
         } catch (e: Exception) {
             println("***** ERROR: Failed to write to file due to: $e")
         }
     }
 
-    fun writeToBitCheerFile(type: String, username: String?, value: String?, privateMessage: String?) {
-        if (value != null && (value.toIntOrNull() ?: 0) > 0) {
-            writeLineToFile("$username - New $type: $value - $privateMessage", FileWriterType.BitCheerFile)
-//            if (config.writeCsvFile) {
-//                writeCsvFile(type, username, value, privateMessage)
-//            }
-        }
-    }
-
-    fun writeToMessageFile(username: String?, privateMessage: String?) {
-        if (!privateMessage.isNullOrBlank()) {
-            writeLineToFile("$username - $privateMessage", FileWriterType.MessageFile)
-        }
-    }
-
-    private fun writeCsvFile(type: String, username: String?, value: String?, privateMessage: String?) {
-        val message = "$type,$username,$value,$privateMessage"
-        writeLineToFile(message, FileWriterType.BitCheerFileCsv)
-    }
 }
 
