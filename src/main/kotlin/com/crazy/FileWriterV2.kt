@@ -1,8 +1,8 @@
 package com.crazy
 
 import com.crazy.models.FileWriterConfigV2
-import com.crazy.models.FileWriterType
 import com.fasterxml.jackson.databind.ObjectMapper
+import com.fasterxml.jackson.module.kotlin.registerKotlinModule
 import java.io.File
 import java.time.LocalDateTime
 import java.util.regex.Matcher
@@ -41,11 +41,11 @@ class FileWriterV2 { // This is just intended to play around, so don't mind the 
 
         return try {
             val fileContents = File("FileWriterConfigV2.json").readText().trim()
-            val config = ObjectMapper().readValue(fileContents, FileWriterConfigV2::class.java)
-            writeLog("** [ERROR]: Successfully read the FileWriterConfig file")
+            val config = ObjectMapper().registerKotlinModule().readValue(fileContents, FileWriterConfigV2::class.java)
+            writeLog("** [INFO]: Successfully read the FileWriterConfig file")
             config
         } catch (e: Exception) {
-            writeLog("** [ERROR]: Failed to read config")
+            writeLog("** [ERROR]: Failed to read config for $e")
             FileWriterConfigV2("Failed_", "", mutableListOf())
         }
     }
@@ -113,9 +113,8 @@ class FileWriterV2 { // This is just intended to play around, so don't mind the 
                 }
             }
 
-            println("Bananas!!!!!")
         } else {
-            println("NO BANANAS!")
+//            val bob = "SF"
         }
     }
 
@@ -136,7 +135,7 @@ class FileWriterV2 { // This is just intended to play around, so don't mind the 
             val map = parser.parseMessage(message)
             val stuff = parser.getValue(map, parserMap)
             newMessage = newMessage.replace("~$str~", stuff)
-            println(str)
+//            println(str)
         }
 
 //        println(newMessage)
