@@ -1,0 +1,53 @@
+{
+  "filesPrefix": "Dump_",
+  "filesLocation": "",
+  "fileDefinitions": [
+    {
+      "id": "Dono",
+      "fileName": "Dono-Log",
+      "fileExtension": "txt",
+      "active": true,
+      "patterns": [
+        {
+          "findPattern": "bits=",
+          "messagePattern": "~USERNAME~ - New Bits: ~BITS~ - ~USER_MESSAGE~"
+        },
+        {
+          "findPattern": "msg-param-sub-plan=",
+          "messagePattern": "~USERNAME~ - New Sub: ~SUBS~"
+        }
+      ],
+      "writeFileHeader": true,
+      "includeTimeStamp": true
+    },
+    {
+      "id": "Message",
+      "fileName": "message-Log",
+      "fileExtension": "txt",
+      "active": true,
+      "patterns": [
+        {
+          "findPattern": "PRIVMSG",
+          "messagePattern": "~USERNAME~ - ~USER_MESSAGE~"
+        }
+      ],
+      "writeFileHeader": false,
+      "includeTimeStamp": false
+    },
+    {
+      "id": "Full",
+      "fileName": "full-Log",
+      "fileExtension": "txt",
+      "active": true,
+      "patterns": [
+        {
+          "findPattern": "",
+          "messagePattern": "~ALL~"
+        }
+      ],
+      "writeFileHeader": false,
+      "includeTimeStamp": false
+    }
+  ],
+  "extraLogs": true
+}

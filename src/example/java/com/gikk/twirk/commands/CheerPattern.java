@@ -5,8 +5,6 @@ import com.gikk.twirk.enums.USER_TYPE;
 import com.gikk.twirk.types.twitchMessage.TwitchMessage;
 import com.gikk.twirk.types.users.TwitchUser;
 
-import java.util.Calendar;
-import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 

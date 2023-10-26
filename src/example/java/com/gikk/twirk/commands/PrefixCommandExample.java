@@ -8,8 +8,8 @@ import com.gikk.twirk.types.users.TwitchUser;
 import java.util.*;
 
 public class PrefixCommandExample extends CommandExampleBase {
-	private final static String patternA = "!subcount";
-	private final static String patternB = "!bitcount";
+	private final static String patternA = "!crabsubcount";
+	private final static String patternB = "!crabbitcount";
 //	private final static String patternC = "!zerobitcount";
 //	private final static String patternD = "!SetBits";
 	
