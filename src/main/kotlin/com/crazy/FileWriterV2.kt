@@ -81,6 +81,14 @@ class FileWriterV2 { // This is just intended to play around, so don't mind the 
     }
 
     fun listen(message: String) {
+        try {
+            listenGuts(message)
+        } catch (e: Exception) {
+            println("** ERROR - Failed to FileWrite message - $message - for - $e")
+        }
+    }
+
+    private fun listenGuts(message: String) {
         val matchList = patterns.filter { it in message }
         val matchFound = matchList.isNotEmpty()
         if (matchFound) {
