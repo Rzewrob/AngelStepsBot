@@ -1,9 +1,5 @@
 package com.gikk.twirk;
 
-import com.crazy.CheerParser;
-import com.crazy.GenericParser;
-import com.crazy.SubParser;
-import com.crazy.models.FileWriterType;
 import com.gikk.twirk.commands.*;
 import com.gikk.twirk.events.TwirkListener;
 import kotlin.Pair;
@@ -41,11 +37,6 @@ public class BotExample {
 								.setVerboseMode(true)
 								.build();
 
-
-		final CheerParser cheerParser = new CheerParser();
-		final SubParser subParser = new SubParser();
-		final GenericParser genericParser = new GenericParser();
-
 		twirk.addIrcListener( getOnDisconnectListener(twirk) );
 		//twirk.addIrcListener( new PatternCommandExample(twirk) );
 //		twirk.addIrcListener( new PrefixCommandExample(twirk) );
@@ -70,7 +61,7 @@ public class BotExample {
 				int subcount = twirk.getSubcount();
 				String textToDump = "**** Final Bits: " + cheerCount + " - Final Subs: " + subcount;
 				System.out.println(textToDump);
-				twirk.fileWriter.writeLineToFile(textToDump, "Dono");
+				twirk.fileWriter.writeLineToFile("Dono", textToDump);
 				break;
 			}
 			else if(".reconnect".equals(line)) {

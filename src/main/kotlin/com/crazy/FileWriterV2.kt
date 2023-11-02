@@ -155,7 +155,7 @@ class FileWriterV2 { // This is just intended to play around, so don't mind the 
         println(textToWrite)
     }
 
-    fun writeLineToFile(textToWrite: String, fileId: String) {
+    fun writeLineToFile(fileId: String, textToWrite: String) {
         try {
             val file = config.fileDefinitions.find { it.id == fileId } ?: throw Exception("File Id $fileId does not exist")
             File(getFileWithPath(file.fullFileName, config.filesLocation)).appendText("\n$$textToWrite")
