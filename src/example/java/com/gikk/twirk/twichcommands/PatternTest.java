@@ -1,11 +1,9 @@
-package com.gikk.twirk.commands;
+package com.gikk.twirk.twichcommands;
 
 import com.gikk.twirk.Twirk;
 import com.gikk.twirk.enums.USER_TYPE;
 import com.gikk.twirk.types.twitchMessage.TwitchMessage;
 import com.gikk.twirk.types.users.TwitchUser;
-import java.util.Calendar;
-import java.util.Date;
 
 public class PatternTest extends CommandExampleBase {
     private final static String patternA = "!maizel";

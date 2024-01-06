@@ -14,7 +14,7 @@
         },
         {
           "findPattern": "msg-param-sub-plan=",
-          "messagePattern": "~USERNAME~ - New Sub: ~SUBS~"
+          "messagePattern": "~USERNAME~ - New Sub: ~SUBS~  ~USER_MESSAGE~ "
         }
       ],
       "writeFileHeader": true,

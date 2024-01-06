@@ -1,7 +1,8 @@
 package com.gikk.twirk;
 
-import com.gikk.twirk.commands.*;
+import com.gikk.twirk.twichcommands.*;
 import com.gikk.twirk.events.TwirkListener;
+import com.gikk.twirk.types.users.TwitchUser;
 import kotlin.Pair;
 
 import java.io.IOException;
@@ -22,7 +23,8 @@ import java.util.Scanner;
 public class BotExample {
 	public int MoneyValue = 0;
 	public int Bitcount =0;
-	public int Subcount =0;
+	public int Subcount =8;
+
 
 
 	public static void main(String[] args) throws IOException, InterruptedException{
@@ -30,6 +32,7 @@ public class BotExample {
 				         + "to send and receive messages from a Twitch chat channel. You will \n"
 				         + "make all input directly here in the command prompt. \n\n"
 				         + "Enter channel to join:");
+
 		Scanner scanner = new Scanner(new InputStreamReader(System.in, StandardCharsets.UTF_8));
 		String channel = scanner.nextLine();
 		
@@ -38,8 +41,9 @@ public class BotExample {
 								.build();
 
 		twirk.addIrcListener( getOnDisconnectListener(twirk) );
-		//twirk.addIrcListener( new PatternCommandExample(twirk) );
-//		twirk.addIrcListener( new PrefixCommandExample(twirk) );
+		twirk.addIrcListener( new JoinRaffle(twirk) );
+		twirk.addIrcListener( new Counts(twirk) );
+		twirk.addIrcListener( new Raffle(twirk) );
 		twirk.addIrcListener(new PatternTest(twirk));
 		twirk.addIrcListener(new CheerPattern(twirk) );
 		twirk.addIrcListener(new SubPattern(twirk) );

@@ -1,4 +1,4 @@
-package com.gikk.twirk.commands;
+package com.gikk.twirk.twichcommands;
 
 import com.gikk.twirk.Twirk;
 import com.gikk.twirk.enums.USER_TYPE;
@@ -38,7 +38,7 @@ public class CheerPattern extends CommandExampleBase {
     private static String PATTERN26 = "Shamrock";
 
     public int CheerCount = 0;
-    public double CheerValue = 0.00;
+    public double CheerValue = 0;
 
     private final Twirk twirk;
 

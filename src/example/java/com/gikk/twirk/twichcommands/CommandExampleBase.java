@@ -1,4 +1,4 @@
-package com.gikk.twirk.commands;
+package com.gikk.twirk.twichcommands;
 
 import com.gikk.twirk.enums.USER_TYPE;
 import com.gikk.twirk.events.TwirkListener;

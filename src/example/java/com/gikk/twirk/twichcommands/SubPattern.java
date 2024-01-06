@@ -1,4 +1,4 @@
-package com.gikk.twirk.commands;
+package com.gikk.twirk.twichcommands;
 
 import com.gikk.twirk.Twirk;
 import com.gikk.twirk.enums.USER_TYPE;
@@ -14,7 +14,7 @@ public class SubPattern extends SubAny {
     private static String PATTERNB = "resub";
     private static String PATTERNC = "submysterygift";
     public int SubCount = 0;
-    public double SubValue = 0.00;
+    public double SubValue = 0;
     public int Tier1 = 0;
     public int Tier2 = 0;
     public int Tier3 = 0;

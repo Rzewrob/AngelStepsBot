@@ -98,6 +98,8 @@ public final class Twirk {
 	private int Tier1 = 0;
 	private int Tier2 = 0;
 	private int Tier3 = 0;
+	public ArrayList<TwitchUser> RaffleUsers = new ArrayList<TwitchUser>();
+	public ArrayList<String> OldWinners = new ArrayList<String>();
 
 	FileWriterV2 fileWriter;
 	//***********************************************************************************************

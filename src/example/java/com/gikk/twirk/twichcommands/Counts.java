@@ -1,21 +1,19 @@
-package com.gikk.twirk.commands;
+package com.gikk.twirk.twichcommands;
 
 import com.gikk.twirk.Twirk;
 import com.gikk.twirk.enums.USER_TYPE;
 import com.gikk.twirk.types.twitchMessage.TwitchMessage;
 import com.gikk.twirk.types.users.TwitchUser;
 
-import java.util.*;
-
-public class PrefixCommandExample extends CommandExampleBase {
-	private final static String patternA = "!crabsubcount";
-	private final static String patternB = "!crabbitcount";
+public class Counts extends CommandExampleBase {
+	private final static String patternA = "!subcount";
+	private final static String patternB = "!bitcount";
 //	private final static String patternC = "!zerobitcount";
 //	private final static String patternD = "!SetBits";
 	
 	private final Twirk twirk;
 	
-	public PrefixCommandExample(Twirk twirk) {
+	public Counts(Twirk twirk) {
 		super(CommandType.PREFIX_COMMAND);
 		this.twirk = twirk;
 	}
