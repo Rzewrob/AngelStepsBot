@@ -1,13 +1,14 @@
-package com.gikk.twirk.twichcommands;
+package com.gikk.twirk.twichcommands.rafflecommands;
 
 import com.gikk.twirk.Twirk;
 import com.gikk.twirk.enums.USER_TYPE;
+import com.gikk.twirk.twichcommands.CommandExampleBase;
 import com.gikk.twirk.types.twitchMessage.TwitchMessage;
 import com.gikk.twirk.types.users.TwitchUser;
 
 import java.util.ArrayList;
 
-public class JoinRaffle extends CommandExampleBase{
+public class JoinRaffle extends CommandExampleBase {
 	private static String PATTERN = "!joinraffle";
 
 	
@@ -36,14 +37,17 @@ public class JoinRaffle extends CommandExampleBase{
 	}
 	public void JoinLogic (TwitchUser sender){
 		if(!twirk.OldWinners.contains(sender.getDisplayName())) {
-			twirk.RaffleUsers.add(sender);
-			for(String i: twirk.OldWinners)
-			{
-				System.out.println("OlD Winner values: " + i.toString());
-
+			if(!twirk.RaffleUsers.contains(sender.getDisplayName())) {
+				twirk.RaffleUsers.add(sender);
+				//Used to check old winners
+//			for(String i: twirk.OldWinners)
+//			{
+//				System.out.println("OlD Winner values: " + i.toString());
+//
+//			}
+				System.out.println("sender to string: " + sender.toString());
+				System.out.println("Added " + sender.getDisplayName() + " to Sender");
 			}
-			System.out.println("sender to string: " + sender.toString());
-			System.out.println("Added " + sender.getDisplayName() + " to Sender");
 		}
 		else
 		{

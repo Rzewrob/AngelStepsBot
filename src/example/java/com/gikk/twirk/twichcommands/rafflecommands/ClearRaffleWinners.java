@@ -1,11 +1,12 @@
-package com.gikk.twirk.twichcommands;
+package com.gikk.twirk.twichcommands.rafflecommands;
 
 import com.gikk.twirk.Twirk;
 import com.gikk.twirk.enums.USER_TYPE;
+import com.gikk.twirk.twichcommands.CommandExampleBase;
 import com.gikk.twirk.types.twitchMessage.TwitchMessage;
 import com.gikk.twirk.types.users.TwitchUser;
 
-public class ClearRaffleWinners extends CommandExampleBase{
+public class ClearRaffleWinners extends CommandExampleBase {
 	private static String PATTERNA = "!ClearWinners";
 
 	private final Twirk twirk;
