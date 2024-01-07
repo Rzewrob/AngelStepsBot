@@ -47,6 +47,24 @@
       ],
       "writeFileHeader": false,
       "includeTimeStamp": false
+    },
+    {
+      "id": "Raffle",
+      "fileName": "Raffle-Log",
+      "fileExtension": "txt",
+      "active": true,
+      "patterns": [
+        {
+          "findPattern": "crabbotasaurus!crabbotasaurus@crabbotasaurus.tmi.twitch.tv",
+          "messagePattern": "~USERNAME~ - ~USER_MESSAGE~"
+        },
+        {
+          "findPattern": "pkrockbot!pkrockbot@pkrockbot.tmi.twitch.tv",
+          "messagePattern": "~USERNAME~ - ~USER_MESSAGE~"
+        }
+      ],
+      "writeFileHeader": true,
+      "includeTimeStamp": true
     }
   ],
   "extraLogs": true

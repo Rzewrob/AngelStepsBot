@@ -2,14 +2,15 @@ package com.gikk.twirk;
 
 import com.gikk.twirk.twichcommands.*;
 import com.gikk.twirk.events.TwirkListener;
-import com.gikk.twirk.types.users.TwitchUser;
+import com.gikk.twirk.twichcommands.rafflecommands.JoinRaffle;
+import com.gikk.twirk.twichcommands.rafflecommands.Raffle;
 import kotlin.Pair;
 
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.io.IOException;
 
 /**Simple example of how Twirk can be used. <br><br>
  * 
@@ -33,12 +34,40 @@ public class BotExample {
 				         + "make all input directly here in the command prompt. \n\n"
 				         + "Enter channel to join:");
 
+
+
 		Scanner scanner = new Scanner(new InputStreamReader(System.in, StandardCharsets.UTF_8));
 		String channel = scanner.nextLine();
+
 		
 		final Twirk twirk = new TwirkBuilder(channel, SETTINGS.MY_NICK, SETTINGS.MY_PASS)
 								.setVerboseMode(true)
 								.build();
+
+		//Read in winners to Winners Logic
+		FileReader fr=null;
+		try {
+			fr = new FileReader("Winners.txt");
+			BufferedReader inStream = new BufferedReader(fr);
+			String inString;
+			while ((inString = inStream.readLine()) != null) {
+				String User[] = inString.split(" ");
+				twirk.OldWinners.add(inString);
+			}
+			// close the file
+			inStream.close();
+			fr.close();
+		}
+		catch (FileNotFoundException e)
+		{
+			System.out.println("File not found");
+		}
+		//Code to check if reader is working
+//		for(int i = 0; i < twirk.OldWinners.size();i++)
+//		{
+//			System.out.println(twirk.OldWinners.get(i).toString());
+//		}
+
 
 		twirk.addIrcListener( getOnDisconnectListener(twirk) );
 		twirk.addIrcListener( new JoinRaffle(twirk) );
