@@ -101,6 +101,8 @@ public final class Twirk {
 	public ArrayList<TwitchUser> RaffleUsers = new ArrayList<TwitchUser>();
 	public ArrayList<String> OldWinners = new ArrayList<String>();
 
+	public ArrayList<String> AngelQuotes = new ArrayList<String>();
+
 	FileWriterV2 fileWriter;
 	//***********************************************************************************************
 	//											CONSTRUCTOR
