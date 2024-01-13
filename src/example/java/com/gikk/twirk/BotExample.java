@@ -2,6 +2,8 @@ package com.gikk.twirk;
 
 import com.gikk.twirk.twichcommands.*;
 import com.gikk.twirk.events.TwirkListener;
+import com.gikk.twirk.twichcommands.Quotebot.Quote;
+import com.gikk.twirk.twichcommands.Quotebot.SetQuote;
 import com.gikk.twirk.twichcommands.rafflecommands.JoinRaffle;
 import com.gikk.twirk.twichcommands.rafflecommands.Raffle;
 import kotlin.Pair;
@@ -62,6 +64,23 @@ public class BotExample {
 		{
 			System.out.println("File not found");
 		}
+
+		//Read in winners to Winners Logic
+		FileReader AQ = null;
+		try {
+			AQ = new FileReader("AngelQuotes.txt");
+			BufferedReader inStream = new BufferedReader(AQ);
+			String inString;
+			while ((inString = inStream.readLine()) != null) {
+				String User[] = inString.split(" ");
+				twirk.AngelQuotes.add(inString);
+			}
+			// close the file
+			inStream.close();
+			AQ.close();
+		} catch (FileNotFoundException e) {
+			System.out.println("File not found");
+		}
 		//Code to check if reader is working
 //		for(int i = 0; i < twirk.OldWinners.size();i++)
 //		{
@@ -70,6 +89,8 @@ public class BotExample {
 
 
 		twirk.addIrcListener( getOnDisconnectListener(twirk) );
+//		twirk.addIrcListener(new SetQuote(twirk));
+//		twirk.addIrcListener(new Quote(twirk));
 		twirk.addIrcListener( new JoinRaffle(twirk) );
 		twirk.addIrcListener( new Counts(twirk) );
 		twirk.addIrcListener( new Raffle(twirk) );

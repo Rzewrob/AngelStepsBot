@@ -71,7 +71,7 @@ public class Raffle extends CommandExampleBase {
 		FileWriter fw = new FileWriter("Winners.txt",true);
 		try {
 			// attach a file to FileWriter
-			fw.write(Winner + "\n");
+			fw.write(Winner);
 		}
 		catch(IOException e) {
 			System.out.println("Writing Failed");
