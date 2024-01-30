@@ -6,6 +6,8 @@ import com.gikk.twirk.twichcommands.CommandExampleBase;
 import com.gikk.twirk.types.twitchMessage.TwitchMessage;
 import com.gikk.twirk.types.users.TwitchUser;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -69,9 +71,17 @@ public class Raffle extends CommandExampleBase {
 	public void WriteRaffleLogic (String Winner) throws IOException
 	{
 		FileWriter fw = new FileWriter("Winners.txt",true);
+		BufferedReader br = new BufferedReader(new FileReader("Winners.txt"));
 		try {
 			// attach a file to FileWriter
-			fw.write(Winner);
+			if(br.readLine()==null) {
+				//System.out.println("Fix for first entry");
+				fw.write( Winner);
+			}
+			else {
+				//System.out.println("2nd Entry");
+				fw.write("\n" + Winner);
+			}
 		}
 		catch(IOException e) {
 			System.out.println("Writing Failed");
