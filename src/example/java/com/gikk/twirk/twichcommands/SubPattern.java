@@ -15,6 +15,8 @@ public class SubPattern extends SubAny {
     private static String PATTERNC = "submysterygift";
     public int SubCount = 0;
     public double SubValue = 0;
+
+    public int TierPrime = 0;
     public int Tier1 = 0;
     public int Tier2 = 0;
     public int Tier3 = 0;
@@ -53,7 +55,7 @@ public class SubPattern extends SubAny {
         {
             if (PrimeMatcher.group(1).equals("Prime"))
             {
-                ChValue = 1;
+                ChValue = 4;
                 //System.out.println("Hit Prime Check");
             }
         }
@@ -68,8 +70,15 @@ public class SubPattern extends SubAny {
 //        }
 
 //         fileWriter.writeLineToFile("New Sub: " + ChValue, null);
-
-        if(ChValue == 1)
+        if(ChValue == 4)
+        {
+            SubCount++;
+            TierPrime++;
+            System.out.println("Tier Prime Count: " + TierPrime);
+            twirk.setTierPrime(TierPrime);
+            twirk.setSubcount(SubCount);
+        }
+        else if(ChValue == 1)
         {
             SubCount += ChValue;
             Tier1++;

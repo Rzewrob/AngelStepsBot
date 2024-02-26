@@ -95,6 +95,7 @@ public final class Twirk {
 	private double Cheervalue = 0;
 	private int Subcount= 0;
 	private double SubValue= 0;
+	private int TierPrime = 0;
 	private int Tier1 = 0;
 	private int Tier2 = 0;
 	private int Tier3 = 0;
@@ -681,5 +682,13 @@ public final class Twirk {
 
 	public void setTier3(int tier3) {
 		Tier3 = tier3;
+	}
+
+	public int getTierPrime() {
+		return TierPrime;
+	}
+
+	public void setTierPrime(int tierPrime) {
+		TierPrime = tierPrime;
 	}
 }
