@@ -6,6 +6,7 @@ import com.gikk.twirk.twichcommands.Quotebot.Quote;
 import com.gikk.twirk.twichcommands.Quotebot.SetQuote;
 import com.gikk.twirk.twichcommands.rafflecommands.JoinRaffle;
 import com.gikk.twirk.twichcommands.rafflecommands.Raffle;
+import com.timer.CountDownTimer;
 import kotlin.Pair;
 
 import java.io.*;
@@ -26,7 +27,9 @@ import java.io.IOException;
 public class BotExample {
 	public int MoneyValue = 0;
 	public int Bitcount =0;
-	public int Subcount =8;
+	public int Subcount =0;
+
+	public int seconds = 0;
 
 
 
@@ -37,7 +40,8 @@ public class BotExample {
 				         + "Enter channel to join:");
 
 
-
+		CountDownTimer watch = new CountDownTimer(10);
+		Thread thread = new Thread(watch);
 		Scanner scanner = new Scanner(new InputStreamReader(System.in, StandardCharsets.UTF_8));
 		String channel = scanner.nextLine();
 
@@ -49,7 +53,7 @@ public class BotExample {
 		//Read in winners to Winners Logic
 		FileReader fr=null;
 		try {
-			fr = new FileReader("Winners.txt");
+			fr = new FileReader("Winners2.txt");
 			BufferedReader inStream = new BufferedReader(fr);
 			String inString;
 			while ((inString = inStream.readLine()) != null) {
@@ -129,7 +133,7 @@ public class BotExample {
 				Pair<String,String> subCountCommand = new Pair<>("!subcount", "Dumps the subcount to terminal");
 				Pair<String,String> bitCountCommand = new Pair<>("!bitcount", "Dumps the bits to terminal");
 				Pair<String,String> setBitsCommand = new Pair<>("!setbits", "Set the value for bits - Takes Integer");
-				Pair<String,String> setSubsCommand = new Pair<>("!setsubs", "Set the value for subs - Takes Integers separated by comas - 0,0,0,0 - Subs,Tier1,Tier2,Tier3 - Bad formatting will set all or individual ones to 0");
+				Pair<String,String> setSubsCommand = new Pair<>("!setsubs", "Set the value for subs - Takes Integers separated by comas - 0,0,0,0,0 - Subs,Tier1,Tier2,Tier3,TierPrime - Bad formatting will set all or individual ones to 0");
 
 				ArrayList<Pair<String,String>> commandList = new ArrayList<>();
 				commandList.add(listCommand);
@@ -141,7 +145,7 @@ public class BotExample {
 //				twirk.channelMessage(line);
 				if(line.equals(subCountCommand.getFirst()) ) {
 					System.out.println("**** Current Subs: " + twirk.getSubcount() + " for a value of " + String.format("%.2f",twirk.getSubValue()));
-					System.out.println("**** Tier1Subs: " + twirk.getTier1() + " | Tier2Subs: " + twirk.getTier2() + " | Tier3Subs: " + twirk.getTier3());
+					System.out.println("**** Tier1Subs: " + twirk.getTier1() + " | Tier2Subs: " + twirk.getTier2() + " | Tier3Subs: " + twirk.getTier3() + " | TierPrimeSubs: " + twirk.getTierPrime());
 				} else if(line.equals(bitCountCommand.getFirst()) ) {
 					System.out.println("**** Current Bits: " + twirk.getCheerCount() + " for a value of " + String.format("%.2f",twirk.getCheervalue()));
 				} else if(line.contains(setBitsCommand.getFirst()) ) {
@@ -161,11 +165,13 @@ public class BotExample {
 						int tier1 = twirk.getTier1();
 						int tier2 = twirk.getTier2();
 						int tier3 = twirk.getTier3();
+						int tierprime = twirk.getTierPrime();
 						twirk.setSubcount(Integer.parseInt(values[0]));
 						twirk.setTier1(Integer.parseInt(values[1]));
 						twirk.setTier2(Integer.parseInt(values[2]));
 						twirk.setTier3(Integer.parseInt(values[3]));
-						System.out.println("**** Changed Subs - Current: " + subcount + "," + tier1 + "," + tier2 + "," + tier3 + " - New: " + values[0] + "," + values[1] + "," + values[2] + "," + values[3] );
+						twirk.setTier3(Integer.parseInt(values[4]));
+						System.out.println("**** Changed Subs - Current: " + subcount + "," + tier1 + "," + tier2 + "," + tier3 + "," + tierprime + " - New: " + values[0] + "," + values[1] + "," + values[2] + "," + values[3] + "," + values[4] );
 					} catch (Exception e) {
 						System.out.println("**** Command Error - " + e);
 					}

@@ -70,8 +70,8 @@ public class Raffle extends CommandExampleBase {
 	}
 	public void WriteRaffleLogic (String Winner) throws IOException
 	{
-		FileWriter fw = new FileWriter("Winners.txt",true);
-		BufferedReader br = new BufferedReader(new FileReader("Winners.txt"));
+		FileWriter fw = new FileWriter("Winners2.txt",true);
+		BufferedReader br = new BufferedReader(new FileReader("Winners2.txt"));
 		try {
 			// attach a file to FileWriter
 			if(br.readLine()==null) {
