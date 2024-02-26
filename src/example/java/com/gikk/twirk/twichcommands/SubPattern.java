@@ -78,7 +78,7 @@ public class SubPattern extends SubAny {
             twirk.setTierPrime(TierPrime);
             twirk.setSubcount(SubCount);
         }
-        if(ChValue == 1)
+        else if(ChValue == 1)
         {
             SubCount += ChValue;
             Tier1++;
