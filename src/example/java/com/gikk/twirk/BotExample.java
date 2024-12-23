@@ -2,6 +2,7 @@ package com.gikk.twirk;
 
 import com.gikk.twirk.twichcommands.*;
 import com.gikk.twirk.events.TwirkListener;
+import com.gikk.twirk.twichcommands.EventShoutouts.StartEventMessages;
 import com.gikk.twirk.twichcommands.Quotebot.Quote;
 import com.gikk.twirk.twichcommands.Quotebot.SetQuote;
 import com.gikk.twirk.twichcommands.rafflecommands.JoinRaffle;
@@ -12,8 +13,7 @@ import kotlin.Pair;
 import java.io.*;
 import java.lang.reflect.Array;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.*;
 import java.io.IOException;
 
 /**Simple example of how Twirk can be used. <br><br>
@@ -31,6 +31,8 @@ public class BotExample {
 	public int Subcount =0;
 
 	public int seconds = 0;
+	public static String EventFilename = "AngelEventChat.txt";
+
 
 
 
@@ -60,19 +62,22 @@ public class BotExample {
 
 		ReadinWinnersFile(file,twirk);
 		Quotesstarter(twirk);
+		List<String> Events = ReadinEventFile();
 
 
 		twirk.addIrcListener( getOnDisconnectListener(twirk) );
 //		twirk.addIrcListener(new SetQuote(twirk));
 //		twirk.addIrcListener(new Quote(twirk));
-		twirk.addIrcListener( new JoinRaffle(twirk) );
-		twirk.addIrcListener( new Counts(twirk) );
-		twirk.addIrcListener( new Raffle(twirk) );
+//		twirk.addIrcListener( new JoinRaffle(twirk) );
+//		twirk.addIrcListener( new Counts(twirk) );
+//		twirk.addIrcListener( new Raffle(twirk) );
 		twirk.addIrcListener(new PatternTest(twirk));
-		twirk.addIrcListener(new CheerPattern(twirk) );
-		twirk.addIrcListener(new SubPattern(twirk) );
-		twirk.addIrcListener(new Online(twirk));
-		twirk.addIrcListener( new Raffle(twirk) );
+//		twirk.addIrcListener(new CheerPattern(twirk) );
+//		twirk.addIrcListener(new SubPattern(twirk) );
+//		twirk.addIrcListener(new Online(twirk));
+//		twirk.addIrcListener( new Raffle(twirk) );
+//		twirk.addIrcListener( new MassShoutout(twirk,channel));
+		twirk.addIrcListener( new StartEventMessages(twirk,Events));
 
 		System.out.println("To reconnect to Twitch, type .reconnect and press Enter");
 		System.out.println("To exit this example, type .quit and press Enter");
@@ -93,7 +98,7 @@ public class BotExample {
 				//however, which will cause us to reconnect to Twitch.
 				twirk.disconnect();
 			}
-			else if (".togglebot".equals(line))
+			else if (". ".equals(line))
 			{
 				ToggleRafflebot(twirk,RaffleActive);
 			}
@@ -257,6 +262,34 @@ public class BotExample {
 		{
 			twirk.addIrcListener( new Raffle(twirk) );
 			System.out.println("Raffle Bot Openmed");
+		}
+	}
+	public static List ReadinEventFile()
+	{
+		//Reads in file to read
+		FileReader fr=null;
+		Iterator<String> Events = null;
+		List<String> Acts = new ArrayList<String>();
+		try {
+			fr = new FileReader(EventFilename);
+			BufferedReader inStream = new BufferedReader(fr);
+			String inString;
+			while ((inString = inStream.readLine()) != null) {
+				String[] test = inString.split("\\|");
+				Collections.addAll(Acts,test);
+			}
+			// close the file
+			inStream.close();
+			fr.close();
+			System.out.println(Acts.toString());
+			return Acts;
+		}
+		catch (FileNotFoundException e)
+		{
+			System.out.println("File not found - Event Bot");
+			return null;
+		} catch (IOException e) {
+			throw new RuntimeException(e);
 		}
 	}
 }
