@@ -1,3 +1,14 @@
-AngelSteps|Cha cha slide|1
-TaneTenshi|Testtesttest|1
-PKROCK|Test|1
+@angel_steps, @paranorma__, @ramaea, @tanetenshi|We Wish You A Merry Christmas|2.1|https://www.twitch.tv/angel_steps  https://www.twitch.tv/paranorma__  https://www.twitch.tv/ramaea  https://www.twitch.tv/tanetenshi|https://www.youtube.com/@AngelStepsCH  https://www.youtube.com/@paranorma_  https://www.youtube.com/@ramaea  https://www.youtube.com/@TaneTenshi
+@angel_steps|Empty|0|https://www.twitch.tv/angel_steps|https://www.youtube.com/@AngelStepsCH
+@the_arkhand|pov you are at a yule log party with ark but neither of you know what to say but thats okay|0.76|https://www.twitch.tv/the_arkhand|https://www.youtube.com/@Arkhand
+@daimorivt|Have Yourself A Merry Little Christmas|4.2|https://www.twitch.tv/daimorivt| 
+@dionysusmythos|All I Want For Christmas|4.05|https://www.twitch.tv/dionysusmythos|https://www.youtube.com/@DionysusMythos
+@lolotus|What’s This?|3.05|https://www.twitch.tv/lolotus|https://www.youtube.com/@lolotuss
+@megalodonvt|Rudolf the Red Nosed Reindeer|2.68|https://www.twitch.tv/megalodonvt|https://www.youtube.com/@megalodonVT
+@miaz|12 Days Of VMas|3.983|https://www.twitch.tv/miaz|https://www.youtube.com/miazch
+@muga|I Want a Hippopotamus for Christmas|2.55|https://www.twitch.tv/muga|https://www.youtube.com/@MugaMatsui
+@muga|Where Are You Christmas|1.73|https://www.twitch.tv/muga|https://www.youtube.com/@MugaMatsui
+@paranorma__|Sally’s Song|2.05|https://www.twitch.tv/paranorma__|https://www.youtube.com/@paranorma_
+@pixcatos|Jingle Bell Rock|2.05|https://www.twitch.tv/pixcatos|https://www.youtube.com/@PixcatOS
+@silvi|The Christmas Walt|3|https://www.twitch.tv/silvi|https://www.youtube.com/@SilviMikazuki
+@tanetenshi|A Visit from St. Nicholas|6.383|https://www.twitch.tv/tanetenshi|https://www.youtube.com/@TaneTenshi

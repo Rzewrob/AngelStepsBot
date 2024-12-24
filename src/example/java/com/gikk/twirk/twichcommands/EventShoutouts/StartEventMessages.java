@@ -113,7 +113,7 @@ public class StartEventMessages extends CommandExampleBase {
 						if (Pause) {
 							try {
 								System.out.println("Paused");
-								Thread.sleep(delaytime);
+								Thread.sleep(10);
 								continue;
 							} catch (InterruptedException e) {
 								throw new RuntimeException(e);
@@ -123,8 +123,10 @@ public class StartEventMessages extends CommandExampleBase {
 						if (Index == 0) {
                             try {
 								Thread.sleep(5000);
-								twirk.channelMessage("Please cheer our next act " + EventsList.get(Index) + "!!! Performing " + EventsList.get(Index + 1));
-								Index += 3;
+								twirk.channelMessage("Please cheer our next act!  " + EventsList.get(Index) + ". Performing " + EventsList.get(Index + 1));
+								Thread.sleep(5000);
+								twirk.channelMessage("Please go support the performers! " + EventsList.get(Index+3) + " " + EventsList.get(Index+4));
+								Index += 5;
 								Thread.sleep(5000);
 							} catch (InterruptedException e) {
                                 throw new RuntimeException(e);
@@ -141,9 +143,11 @@ public class StartEventMessages extends CommandExampleBase {
 						//Action to shoutout rest of events but with a delay
 						try {
 							Thread.sleep(5000);
-							twirk.channelMessage("Please cheer our next act " + EventsList.get(Index) + "!!! Performing " + EventsList.get(Index + 1));
+							twirk.channelMessage("Please cheer our next act  " + EventsList.get(Index) + "!!! Performing " + EventsList.get(Index + 1));
 							Thread.sleep(5000);
-							Index += 3;
+							twirk.channelMessage("Please go support the performers! " + EventsList.get(Index+3) + "  " + EventsList.get(Index+4));
+							Thread.sleep(5000);
+							Index += 5;
 						} catch (InterruptedException e) {
 							throw new RuntimeException(e);
 						}
@@ -157,18 +161,18 @@ public class StartEventMessages extends CommandExampleBase {
 		System.out.println("Pause is " + Pause);
 	}
 	public void Next (){
-		Index+=3;
+		Index+=5;
 		System.out.println("Index is now " + Index + " or next Singer is " + EventsList.get(Index));
 	}
 	public void Back (){
-		Index-=6;
+		Index-=10;
 		System.out.println("Index is now " + Index + " or next Singer is " + EventsList.get(Index));
 	}
 	public long CalcDelayTime()
 	{
 //		System.out.println("Index 1: " +EventsList.get(Index) + "   Index 2: " EventsList.get(Index + 1))
-		int Minutes = Integer.parseInt(EventsList.get(Index+2));
-		long Millis = Minutes * 60 * 1000;
+		double Minutes = Double.parseDouble(EventsList.get(Index+2));
+		long Millis = (long) (Minutes * 60 * 1000);
 		return Millis;
 	}
 
