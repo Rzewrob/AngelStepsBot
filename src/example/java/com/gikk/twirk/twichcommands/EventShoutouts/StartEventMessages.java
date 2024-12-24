@@ -113,7 +113,7 @@ public class StartEventMessages extends CommandExampleBase {
 						if (Pause) {
 							try {
 								System.out.println("Paused");
-								Thread.sleep(10);
+								Thread.sleep(delaytime);
 								continue;
 							} catch (InterruptedException e) {
 								throw new RuntimeException(e);
@@ -123,8 +123,8 @@ public class StartEventMessages extends CommandExampleBase {
 						if (Index == 0) {
                             try {
 								Thread.sleep(5000);
-								twirk.channelMessage("Please cheer our next act!  " + EventsList.get(Index) + ". Performing " + EventsList.get(Index + 1));
-								Thread.sleep(5000);
+								twirk.channelMessage("Please cheer our next act!  " + EventsList.get(Index) + ". Performing \"" + EventsList.get(Index + 1) + "\"");
+								Thread.sleep(10000);
 								twirk.channelMessage("Please go support the performers! " + EventsList.get(Index+3) + " " + EventsList.get(Index+4));
 								Index += 5;
 								Thread.sleep(5000);
@@ -143,8 +143,8 @@ public class StartEventMessages extends CommandExampleBase {
 						//Action to shoutout rest of events but with a delay
 						try {
 							Thread.sleep(5000);
-							twirk.channelMessage("Please cheer our next act  " + EventsList.get(Index) + "!!! Performing " + EventsList.get(Index + 1));
-							Thread.sleep(5000);
+							twirk.channelMessage("Please cheer our next act!  " + EventsList.get(Index) + ". Performing \"" + EventsList.get(Index + 1) + "\"");
+							Thread.sleep(10000);
 							twirk.channelMessage("Please go support the performers! " + EventsList.get(Index+3) + "  " + EventsList.get(Index+4));
 							Thread.sleep(5000);
 							Index += 5;
