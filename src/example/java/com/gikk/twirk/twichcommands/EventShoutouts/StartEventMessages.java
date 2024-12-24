@@ -101,12 +101,20 @@ public class StartEventMessages extends CommandExampleBase {
 
 //                    System.out.println("Size of list " + EventsList.size());
 					//Loop through the list of users and shouts them out.
-					while (EventsList.iterator().hasNext() || Index < EventsList.size()) {
+					while (Index < EventsList.size()) {
 						System.out.println("While loop is running");
 						//If last user does not exist we just break loop before we hold a thread for 2 minutes
 						if (Index+2 > EventsList.size()) {
-							twirk.channelMessage("Please congratulate");
-							break;
+                            try {
+                                Thread.sleep(delaytime);
+								twirk.channelMessage("Please congratulate all our performers");
+								twirk.channelMessage( EventsList.get(0) + ", " +  EventsList.get(5)+ ", " +  EventsList.get(10)+ ", " +  EventsList.get(15)+ ", " +  EventsList.get(20)
+										+ ", " +  EventsList.get(25) + ", " +  EventsList.get(30) + ", " +  EventsList.get(35) + ", " +  EventsList.get(40) + ", " +  EventsList.get(50)
+										+ ", " +  EventsList.get(55) + ", " +  EventsList.get(60) + ", " +  EventsList.get(65));
+								break;
+                            } catch (InterruptedException e) {
+                                throw new RuntimeException(e);
+                            }
 						}
 						//Pause logic for loop
 						System.out.println("Pause is " +Pause + " before pause section");
@@ -123,7 +131,7 @@ public class StartEventMessages extends CommandExampleBase {
 						if (Index == 0) {
                             try {
 								Thread.sleep(5000);
-								twirk.channelMessage("Please cheer our next act!  " + EventsList.get(Index) + ". Performing \"" + EventsList.get(Index + 1) + "\"");
+								twirk.channelMessage("Please cheer our next act!  " + EventsList.get(Index) + " performing \"" + EventsList.get(Index + 1) + "\"");
 								Thread.sleep(10000);
 								twirk.channelMessage("Please go support the performers! " + EventsList.get(Index+3) + " " + EventsList.get(Index+4));
 								Index += 5;
@@ -143,7 +151,7 @@ public class StartEventMessages extends CommandExampleBase {
 						//Action to shoutout rest of events but with a delay
 						try {
 							Thread.sleep(5000);
-							twirk.channelMessage("Please cheer our next act!  " + EventsList.get(Index) + ". Performing \"" + EventsList.get(Index + 1) + "\"");
+							twirk.channelMessage("Please cheer our next act!  " + EventsList.get(Index) + " performing \"" + EventsList.get(Index + 1) + "\"");
 							Thread.sleep(10000);
 							twirk.channelMessage("Please go support the performers! " + EventsList.get(Index+3) + "  " + EventsList.get(Index+4));
 							Thread.sleep(5000);
