@@ -18,10 +18,12 @@ public class Raffle extends CommandExampleBase {
 	private static String PATTERNA = "!RunRaffle";
 
 	private final Twirk twirk;
+	private String file;
 
-	public Raffle(Twirk twirk) {
+	public Raffle(Twirk twirk, String file) {
 		super(CommandType.CONTENT_COMMAND);
 		this.twirk = twirk;
+		this.file = file;
 	}
 	
 	@Override
@@ -42,7 +44,7 @@ public class Raffle extends CommandExampleBase {
 			}
 			else
 			{
-				TwitchUser Winner = RaffleLogic();
+				TwitchUser Winner = RaffleLogic(file);
 				if(Winner.getDisplayName() != "")
 				{
 					twirk.channelMessage("@" + Winner.getDisplayName() + " is our Raffle winner!");
@@ -50,7 +52,7 @@ public class Raffle extends CommandExampleBase {
 				}
 			}
 	}
-	public TwitchUser RaffleLogic (){
+	public TwitchUser RaffleLogic (String file){
 		TwitchUser Winner;
 		int min = 0;
 		int max = twirk.RaffleUsers.size();
@@ -60,7 +62,7 @@ public class Raffle extends CommandExampleBase {
 		twirk.OldWinners.add(Winner.getDisplayName());
 		System.out.println("Winner: " + Winner.getDisplayName() + ". Random value was " + random_int);
 		try {
-			WriteRaffleLogic(Winner.getDisplayName());
+			WriteRaffleLogic(Winner.getDisplayName(), file);
 		}
 		catch (IOException e)
 		{
@@ -68,9 +70,9 @@ public class Raffle extends CommandExampleBase {
 		}
 		return Winner;
 	}
-	public void WriteRaffleLogic (String Winner) throws IOException
+	public void WriteRaffleLogic (String Winner, String file) throws IOException
 	{
-		FileWriter fw = new FileWriter("Winners2.txt",true);
+		FileWriter fw = new FileWriter(file,true);
 		BufferedReader br = new BufferedReader(new FileReader("Winners2.txt"));
 		try {
 			// attach a file to FileWriter

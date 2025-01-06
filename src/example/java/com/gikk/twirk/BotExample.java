@@ -38,6 +38,7 @@ public class BotExample {
 
 
 
+
 	public static void main(String[] args) throws IOException, InterruptedException{
 		//Is rafflebot active
 		boolean RaffleActive = true;
@@ -66,16 +67,15 @@ public class BotExample {
 
 
 		twirk.addIrcListener( getOnDisconnectListener(twirk) );
-//		twirk.addIrcListener(new SetQuote(twirk));
-//		twirk.addIrcListener(new Quote(twirk));
-//		twirk.addIrcListener( new JoinRaffle(twirk) );
-//		twirk.addIrcListener( new Counts(twirk) );
-//		twirk.addIrcListener( new Raffle(twirk) );
+		twirk.addIrcListener(new SetQuote(twirk));
+		twirk.addIrcListener(new Quote(twirk));
+		twirk.addIrcListener( new JoinRaffle(twirk) );
+		twirk.addIrcListener( new Counts(twirk) );
 		twirk.addIrcListener(new PatternTest(twirk));
-//		twirk.addIrcListener(new CheerPattern(twirk) );
-//		twirk.addIrcListener(new SubPattern(twirk) );
-//		twirk.addIrcListener(new Online(twirk));
-//		twirk.addIrcListener( new Raffle(twirk) );
+		twirk.addIrcListener(new CheerPattern(twirk) );
+		twirk.addIrcListener(new SubPattern(twirk) );
+		twirk.addIrcListener(new Online(twirk));
+		twirk.addIrcListener( new Raffle(twirk,file) );
 //		twirk.addIrcListener( new MassShoutout(twirk,channel));
 		twirk.addIrcListener( new StartEventMessages(twirk,Events));
 
@@ -100,7 +100,7 @@ public class BotExample {
 			}
 			else if (". ".equals(line))
 			{
-				ToggleRafflebot(twirk,RaffleActive);
+				ToggleRafflebot(twirk,RaffleActive, file);
 			}
 			else
 			{
@@ -143,6 +143,7 @@ public class BotExample {
 				twirk.OldWinners.add(inString);
 			}
 			// close the file
+			System.out.println(twirk.OldWinners.toString());
 			inStream.close();
 			fr.close();
 		}
@@ -251,16 +252,16 @@ public class BotExample {
 				System.out.println("**** Unknown Command ****");
 			}
 	}
-	public static void ToggleRafflebot(Twirk twirk, boolean RaffleActive)
+	public static void ToggleRafflebot(Twirk twirk, boolean RaffleActive, String file)
 	{
 		if(RaffleActive)
 		{
-			twirk.removeIrcListener( new Raffle(twirk));
+			twirk.removeIrcListener( new Raffle(twirk,file));
 			System.out.println("Raffle Bot Closed");
 		}
 		else
 		{
-			twirk.addIrcListener( new Raffle(twirk) );
+			twirk.addIrcListener( new Raffle(twirk,file) );
 			System.out.println("Raffle Bot Openmed");
 		}
 	}
